@@ -18,9 +18,12 @@ class _RemoteDataSource implements RemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<UserModel> login() async {
+  Future<UserModel> login({required email, required password}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'email': email,
+      r'password': password
+    };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -34,9 +37,12 @@ class _RemoteDataSource implements RemoteDataSource {
   }
 
   @override
-  Future<UserModel> register() async {
+  Future<UserModel> register({required email, required password}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'email': email,
+      r'password': password
+    };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -46,6 +52,42 @@ class _RemoteDataSource implements RemoteDataSource {
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = UserModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ProfileModel> getProfile({required token}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'token': token};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ProfileModel>(
+            Options(method: 'POST', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/profile',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ProfileModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ProfileModel> editProfile(
+      {required token, required profileModel}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'token': token,
+      r'profile': profileModel.toJson()
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ProfileModel>(
+            Options(method: 'PUT', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/profile',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ProfileModel.fromJson(_result.data!);
     return value;
   }
 

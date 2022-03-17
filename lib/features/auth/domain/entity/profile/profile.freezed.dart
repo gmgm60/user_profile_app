@@ -19,15 +19,15 @@ class _$ProfileTearOff {
   const _$ProfileTearOff();
 
   _profile call(
-      {required String id,
-      required String email,
-      required String name,
-      required String token}) {
+      {required String image,
+      required String phone,
+      required String address,
+      required String age}) {
     return _profile(
-      id: id,
-      email: email,
-      name: name,
-      token: token,
+      image: image,
+      phone: phone,
+      address: address,
+      age: age,
     );
   }
 }
@@ -37,10 +37,10 @@ const $Profile = _$ProfileTearOff();
 
 /// @nodoc
 mixin _$Profile {
-  String get id => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get token => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  String get address => throw _privateConstructorUsedError;
+  String get age => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ mixin _$Profile {
 abstract class $ProfileCopyWith<$Res> {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
       _$ProfileCopyWithImpl<$Res>;
-  $Res call({String id, String email, String name, String token});
+  $Res call({String image, String phone, String address, String age});
 }
 
 /// @nodoc
@@ -63,27 +63,27 @@ class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? email = freezed,
-    Object? name = freezed,
-    Object? token = freezed,
+    Object? image = freezed,
+    Object? phone = freezed,
+    Object? address = freezed,
+    Object? age = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      age: age == freezed
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -94,7 +94,7 @@ abstract class _$profileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   factory _$profileCopyWith(_profile value, $Res Function(_profile) then) =
       __$profileCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String email, String name, String token});
+  $Res call({String image, String phone, String address, String age});
 }
 
 /// @nodoc
@@ -108,27 +108,27 @@ class __$profileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
-    Object? email = freezed,
-    Object? name = freezed,
-    Object? token = freezed,
+    Object? image = freezed,
+    Object? phone = freezed,
+    Object? address = freezed,
+    Object? age = freezed,
   }) {
     return _then(_profile(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
-      email: email == freezed
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      address: address == freezed
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String,
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      age: age == freezed
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -138,23 +138,23 @@ class __$profileCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
 
 class _$_profile implements _profile {
   _$_profile(
-      {required this.id,
-      required this.email,
-      required this.name,
-      required this.token});
+      {required this.image,
+      required this.phone,
+      required this.address,
+      required this.age});
 
   @override
-  final String id;
+  final String image;
   @override
-  final String email;
+  final String phone;
   @override
-  final String name;
+  final String address;
   @override
-  final String token;
+  final String age;
 
   @override
   String toString() {
-    return 'Profile(id: $id, email: $email, name: $name, token: $token)';
+    return 'Profile(image: $image, phone: $phone, address: $address, age: $age)';
   }
 
   @override
@@ -162,19 +162,19 @@ class _$_profile implements _profile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _profile &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.token, token));
+            const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.age, age));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(token));
+      const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(age));
 
   @JsonKey(ignore: true)
   @override
@@ -184,19 +184,19 @@ class _$_profile implements _profile {
 
 abstract class _profile implements Profile {
   factory _profile(
-      {required String id,
-      required String email,
-      required String name,
-      required String token}) = _$_profile;
+      {required String image,
+      required String phone,
+      required String address,
+      required String age}) = _$_profile;
 
   @override
-  String get id;
+  String get image;
   @override
-  String get email;
+  String get phone;
   @override
-  String get name;
+  String get address;
   @override
-  String get token;
+  String get age;
   @override
   @JsonKey(ignore: true)
   _$profileCopyWith<_profile> get copyWith =>

@@ -1,11 +1,12 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/entity/user.dart';
+import '../../../domain/entity/user/user.dart';
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 @Freezed()
 class UserModel with _$UserModel {
+  UserModel._();
   factory UserModel({
     required String id,
     required String email,
@@ -15,17 +16,12 @@ class UserModel with _$UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 
-}
 
-extension UserModelToDomain on User {
-
-  toDomain(UserModel userModel){
-   return User(id: userModel.id, email: userModel.email, name: userModel.name, token: userModel.token);
+  toDomain(){
+    return User(id: id, email: email, name: name, token: token);
   }
 
-  toModel(){
-    return UserModel(id: id, email: email, name: name, token: token);
+ factory UserModel.toModel(User user){
+    return UserModel(id: user.id, email: user.email, name: user.name, token: user.token);
   }
-
-
 }
