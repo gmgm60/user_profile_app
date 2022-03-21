@@ -23,11 +23,15 @@ class _$ProfileModelTearOff {
   const _$ProfileModelTearOff();
 
   _profileModel call(
-      {required String image,
+      {required String name,
+      required String email,
+      required String image,
       required String phone,
       required String address,
       required String age}) {
     return _profileModel(
+      name: name,
+      email: email,
       image: image,
       phone: phone,
       address: address,
@@ -45,6 +49,8 @@ const $ProfileModel = _$ProfileModelTearOff();
 
 /// @nodoc
 mixin _$ProfileModel {
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
@@ -61,7 +67,13 @@ abstract class $ProfileModelCopyWith<$Res> {
   factory $ProfileModelCopyWith(
           ProfileModel value, $Res Function(ProfileModel) then) =
       _$ProfileModelCopyWithImpl<$Res>;
-  $Res call({String image, String phone, String address, String age});
+  $Res call(
+      {String name,
+      String email,
+      String image,
+      String phone,
+      String address,
+      String age});
 }
 
 /// @nodoc
@@ -74,12 +86,22 @@ class _$ProfileModelCopyWithImpl<$Res> implements $ProfileModelCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? name = freezed,
+    Object? email = freezed,
     Object? image = freezed,
     Object? phone = freezed,
     Object? address = freezed,
     Object? age = freezed,
   }) {
     return _then(_value.copyWith(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -107,7 +129,13 @@ abstract class _$profileModelCopyWith<$Res>
           _profileModel value, $Res Function(_profileModel) then) =
       __$profileModelCopyWithImpl<$Res>;
   @override
-  $Res call({String image, String phone, String address, String age});
+  $Res call(
+      {String name,
+      String email,
+      String image,
+      String phone,
+      String address,
+      String age});
 }
 
 /// @nodoc
@@ -122,12 +150,22 @@ class __$profileModelCopyWithImpl<$Res> extends _$ProfileModelCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? name = freezed,
+    Object? email = freezed,
     Object? image = freezed,
     Object? phone = freezed,
     Object? address = freezed,
     Object? age = freezed,
   }) {
     return _then(_profileModel(
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -152,7 +190,9 @@ class __$profileModelCopyWithImpl<$Res> extends _$ProfileModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_profileModel extends _profileModel {
   _$_profileModel(
-      {required this.image,
+      {required this.name,
+      required this.email,
+      required this.image,
       required this.phone,
       required this.address,
       required this.age})
@@ -161,6 +201,10 @@ class _$_profileModel extends _profileModel {
   factory _$_profileModel.fromJson(Map<String, dynamic> json) =>
       _$$_profileModelFromJson(json);
 
+  @override
+  final String name;
+  @override
+  final String email;
   @override
   final String image;
   @override
@@ -172,7 +216,7 @@ class _$_profileModel extends _profileModel {
 
   @override
   String toString() {
-    return 'ProfileModel(image: $image, phone: $phone, address: $address, age: $age)';
+    return 'ProfileModel(name: $name, email: $email, image: $image, phone: $phone, address: $address, age: $age)';
   }
 
   @override
@@ -180,6 +224,8 @@ class _$_profileModel extends _profileModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _profileModel &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality().equals(other.address, address) &&
@@ -189,6 +235,8 @@ class _$_profileModel extends _profileModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(image),
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(address),
@@ -207,7 +255,9 @@ class _$_profileModel extends _profileModel {
 
 abstract class _profileModel extends ProfileModel {
   factory _profileModel(
-      {required String image,
+      {required String name,
+      required String email,
+      required String image,
       required String phone,
       required String address,
       required String age}) = _$_profileModel;
@@ -216,6 +266,10 @@ abstract class _profileModel extends ProfileModel {
   factory _profileModel.fromJson(Map<String, dynamic> json) =
       _$_profileModel.fromJson;
 
+  @override
+  String get name;
+  @override
+  String get email;
   @override
   String get image;
   @override

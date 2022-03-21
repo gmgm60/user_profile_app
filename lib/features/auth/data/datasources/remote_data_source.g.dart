@@ -10,7 +10,7 @@ part of 'remote_data_source.dart';
 
 class _RemoteDataSource implements RemoteDataSource {
   _RemoteDataSource(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'url';
+    baseUrl ??= 'https://mega-user-profile.herokuapp.com/api/';
   }
 
   final Dio _dio;
@@ -18,7 +18,7 @@ class _RemoteDataSource implements RemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<UserModel> login({required email, required password}) async {
+  Future<LoginModel> login({required email, required password}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'email': email,
@@ -27,31 +27,37 @@ class _RemoteDataSource implements RemoteDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserModel>(
+        _setStreamType<LoginModel>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/login',
+                .compose(_dio.options, 'login',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserModel.fromJson(_result.data!);
+    final value = LoginModel.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<UserModel> register({required email, required password}) async {
+  Future<RegisterModel> register(
+      {name = "no name",
+      required email,
+      required password,
+      required passwordConfirmation}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'name': name,
       r'email': email,
-      r'password': password
+      r'password': password,
+      r'password_confirmation': passwordConfirmation
     };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<UserModel>(
+        _setStreamType<RegisterModel>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/register',
+                .compose(_dio.options, 'register',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserModel.fromJson(_result.data!);
+    final value = RegisterModel.fromJson(_result.data!);
     return value;
   }
 

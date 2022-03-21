@@ -4,16 +4,16 @@ class CustomElevatedButton extends StatelessWidget {
   final Function() onTap;
   final String text;
   final Widget? icon;
-  final Color backGroundColor;
-  final Color textColor;
+  final Color? backGroundColor;
+  final Color? textColor;
 
   const CustomElevatedButton({
     Key? key,
     required this.onTap,
     required this.text,
     this.icon,
-    required this.backGroundColor,
-    required this.textColor,
+    this.backGroundColor,
+    this.textColor,
   }) : super(key: key);
 
   @override
@@ -41,7 +41,7 @@ class CustomElevatedButton extends StatelessWidget {
           ),
         ),
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(backGroundColor),
+          backgroundColor:backGroundColor != null? MaterialStateProperty.all<Color>(backGroundColor!):null,
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0))),

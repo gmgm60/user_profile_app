@@ -26,7 +26,7 @@ class _$UserModelTearOff {
       {required String id,
       required String email,
       required String name,
-      required String token}) {
+      String token = ""}) {
     return _userModel(
       id: id,
       email: email,
@@ -152,7 +152,7 @@ class _$_userModel extends _userModel {
       {required this.id,
       required this.email,
       required this.name,
-      required this.token})
+      this.token = ""})
       : super._();
 
   factory _$_userModel.fromJson(Map<String, dynamic> json) =>
@@ -164,6 +164,7 @@ class _$_userModel extends _userModel {
   final String email;
   @override
   final String name;
+  @JsonKey()
   @override
   final String token;
 
@@ -207,7 +208,7 @@ abstract class _userModel extends UserModel {
       {required String id,
       required String email,
       required String name,
-      required String token}) = _$_userModel;
+      String token}) = _$_userModel;
   _userModel._() : super._();
 
   factory _userModel.fromJson(Map<String, dynamic> json) =

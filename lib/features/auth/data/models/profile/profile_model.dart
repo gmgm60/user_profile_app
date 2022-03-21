@@ -9,6 +9,8 @@ part 'profile_model.g.dart';
 class ProfileModel with _$ProfileModel {
   ProfileModel._();
   factory ProfileModel({
+    required String name,
+    required String email,
     required String image,
     required String phone,
     required String address,
@@ -18,11 +20,11 @@ class ProfileModel with _$ProfileModel {
       _$ProfileModelFromJson(json);
 
   factory ProfileModel.toModel(Profile profile){
-    return ProfileModel(image: profile.image, phone: profile.phone, address: profile.address, age: profile.age);
+    return ProfileModel(email:profile.email,name: profile.name, image: profile.image, phone: profile.phone, address: profile.address, age: profile.age);
   }
 
   toDomain (){
-    return Profile(image: image, phone: phone, address: address, age: age);
+    return Profile(email:email ,name:name, image: image, phone: phone, address: address, age: age);
   }
 
 }

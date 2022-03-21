@@ -1,19 +1,24 @@
 
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:user_profile_app/core/error/failures.dart';
 import 'package:user_profile_app/features/auth/data/datasources/remote_data_source.dart';
+import 'package:user_profile_app/features/auth/data/models/login/login_model.dart';
 import 'package:user_profile_app/features/auth/data/models/profile/profile_model.dart';
+import 'package:user_profile_app/features/auth/data/models/register/register_model.dart';
 import 'package:user_profile_app/features/auth/data/models/user/user_model.dart';
 
 import 'package:user_profile_app/features/auth/domain/entity/profile/profile.dart';
 
 import 'package:user_profile_app/features/auth/domain/entity/user/user.dart';
+import 'package:user_profile_app/features/auth/domain/repository/user_repo.dart';
+import 'package:user_profile_app/generated/assets.dart';
 
-import '../../domain/repository/user_repo.dart';
 
-@Injectable(as: UserRepo)
+@Singleton(as: UserRepo)
 class UserRepoImp implements UserRepo {
   final RemoteDataSource _remoteDataSource;
 
@@ -42,9 +47,11 @@ class UserRepoImp implements UserRepo {
   @override
   Future<Either<Failures, User>> login({required String email, required String password})async {
     try{
-      final UserModel user =await _remoteDataSource.login(email: email, password: password);
-      return right(user.toDomain());
+      final LoginModel login =await _remoteDataSource.login(email: email, password: password);
+      final UserModel userModel = UserModel(id: "", email: email, name: "",token: login.token);
+      return right(userModel.toDomain());
     }catch (e){
+      print("login error $e");
       return left(Failures.noUser());
     }
   }
@@ -52,8 +59,10 @@ class UserRepoImp implements UserRepo {
   @override
   Future<Either<Failures, User>> register({required String email, required String password}) async{
     try{
-      final UserModel user =await _remoteDataSource.register(password: password, email: email);
-      return right(user.toDomain());
+      final RegisterModel register =await _remoteDataSource.register(password: password, email: email, passwordConfirmation: password);
+     final LoginModel login = await _remoteDataSource.login(email: email, password: password);
+     final UserModel userModel = UserModel(id: register.user.id, email: register.user.email, name: register.user.name,token:login.token);
+      return right(userModel.toDomain());
     }catch (e){
       return left(Failures.serverError());
     }

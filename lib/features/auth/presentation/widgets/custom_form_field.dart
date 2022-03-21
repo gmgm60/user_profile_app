@@ -35,7 +35,7 @@ class CustomFormField extends StatefulWidget {
     required this.validation,
     this.onChanged,
     this.horizontalPadding = 25.0,
-    this.radius = 20,
+    this.radius = 10,
     this.maxLines,
     this.minLines,
     this.initValue = "", this.onSaved,
