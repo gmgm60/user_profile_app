@@ -1,32 +1,57 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:user_profile_app/features/auth/domain/entity/profile/profile.dart';
+import 'package:user_profile_app/core/usecases/usecase.dart';
 import 'package:user_profile_app/features/auth/domain/usecases/get_profile.dart';
+import 'package:user_profile_app/features/auth/domain/usecases/get_token.dart';
+import 'package:user_profile_app/features/auth/domain/usecases/logout.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/view_profile_cubit/view_profile_state.dart';
 
-@Injectable()
-class ViewProfileCubit extends Cubit<ViewProfileState>{
-  Profile profile = const Profile(
-    email: "gmgm@g.gm",
-    name: "Mohamed Gamal",
-    image:"/data/user/0/com.example.user_profile_app/cache/image_cropper_1647786976631.jpg",
-    phone: "01281139642",
-    address: "13st ",
-    age: "66",
-  );
+@injectable
+class ViewProfileCubit extends Cubit<ViewProfileState> {
+  final GetToken _getToken;
   final GetProfile _getProfile;
-  ViewProfileCubit(this._getProfile) : super(ViewProfileState.init());
+  final Logout _logout;
 
-  Future<void> getProfile()async{
+  ViewProfileCubit(this._getProfile, this._getToken, this._logout)
+      : super(ViewProfileState.init());
+
+  Future<void> getProfile() async {
+    await Future.delayed(const Duration(microseconds: 100));
     emit(ViewProfileState.loading());
-    const GetProfileData getProfileData = GetProfileData(token: "");
-    final result = await _getProfile(getProfileData);
-    result.fold((error) => emit(ViewProfileState.error()), (profile) {
+    final token = await getToken();
+    if (token != null) {
+      GetProfileData getProfileData = GetProfileData(token: token);
+      final result = await _getProfile(getProfileData);
+      result.fold(
+          (error) => emit(
+                ViewProfileState.error(error.toString()),
+              ), (profile) {
+      //  this.profile = profile;
+        emit(ViewProfileState.done(profile: profile));
+      });
+    } else {
+      emit(ViewProfileState.notLogin());
+    }
+  }
 
-      emit(ViewProfileState.done());
+  Future<String?> getToken() async {
+    final result = await _getToken(NoParams());
+    return result.fold((localStoreError) {
+      emit(ViewProfileState.localStorageError());
+      return null;
+    }, (token) {
+      return token;
     });
   }
 
+  Future<void> logout()async{
+    emit(ViewProfileState.loading());
+    await _logout(NoParams());
+    emit(ViewProfileState.init());
+  }
 
+  Future<void> loadNewProfile()async {
+   await getProfile();
+   // emit(ViewProfileState.init());
+  }
 }

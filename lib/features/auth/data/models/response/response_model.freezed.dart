@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'register_model.dart';
+part of 'response_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,68 +14,68 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-RegisterModel _$RegisterModelFromJson(Map<String, dynamic> json) {
+ResponseModel _$ResponseModelFromJson(Map<String, dynamic> json) {
   return _registerModel.fromJson(json);
 }
 
 /// @nodoc
-class _$RegisterModelTearOff {
-  const _$RegisterModelTearOff();
+class _$ResponseModelTearOff {
+  const _$ResponseModelTearOff();
 
-  _registerModel call({required String message, required UserModel user}) {
+  _registerModel call({required String token, required UserModel user}) {
     return _registerModel(
-      message: message,
+      token: token,
       user: user,
     );
   }
 
-  RegisterModel fromJson(Map<String, Object?> json) {
-    return RegisterModel.fromJson(json);
+  ResponseModel fromJson(Map<String, Object?> json) {
+    return ResponseModel.fromJson(json);
   }
 }
 
 /// @nodoc
-const $RegisterModel = _$RegisterModelTearOff();
+const $ResponseModel = _$ResponseModelTearOff();
 
 /// @nodoc
-mixin _$RegisterModel {
-  String get message => throw _privateConstructorUsedError;
+mixin _$ResponseModel {
+  String get token => throw _privateConstructorUsedError;
   UserModel get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RegisterModelCopyWith<RegisterModel> get copyWith =>
+  $ResponseModelCopyWith<ResponseModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RegisterModelCopyWith<$Res> {
-  factory $RegisterModelCopyWith(
-          RegisterModel value, $Res Function(RegisterModel) then) =
-      _$RegisterModelCopyWithImpl<$Res>;
-  $Res call({String message, UserModel user});
+abstract class $ResponseModelCopyWith<$Res> {
+  factory $ResponseModelCopyWith(
+          ResponseModel value, $Res Function(ResponseModel) then) =
+      _$ResponseModelCopyWithImpl<$Res>;
+  $Res call({String token, UserModel user});
 
   $UserModelCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$RegisterModelCopyWithImpl<$Res>
-    implements $RegisterModelCopyWith<$Res> {
-  _$RegisterModelCopyWithImpl(this._value, this._then);
+class _$ResponseModelCopyWithImpl<$Res>
+    implements $ResponseModelCopyWith<$Res> {
+  _$ResponseModelCopyWithImpl(this._value, this._then);
 
-  final RegisterModel _value;
+  final ResponseModel _value;
   // ignore: unused_field
-  final $Res Function(RegisterModel) _then;
+  final $Res Function(ResponseModel) _then;
 
   @override
   $Res call({
-    Object? message = freezed,
+    Object? token = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String,
       user: user == freezed
           ? _value.user
@@ -94,12 +94,12 @@ class _$RegisterModelCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class _$registerModelCopyWith<$Res>
-    implements $RegisterModelCopyWith<$Res> {
+    implements $ResponseModelCopyWith<$Res> {
   factory _$registerModelCopyWith(
           _registerModel value, $Res Function(_registerModel) then) =
       __$registerModelCopyWithImpl<$Res>;
   @override
-  $Res call({String message, UserModel user});
+  $Res call({String token, UserModel user});
 
   @override
   $UserModelCopyWith<$Res> get user;
@@ -107,7 +107,7 @@ abstract class _$registerModelCopyWith<$Res>
 
 /// @nodoc
 class __$registerModelCopyWithImpl<$Res>
-    extends _$RegisterModelCopyWithImpl<$Res>
+    extends _$ResponseModelCopyWithImpl<$Res>
     implements _$registerModelCopyWith<$Res> {
   __$registerModelCopyWithImpl(
       _registerModel _value, $Res Function(_registerModel) _then)
@@ -118,13 +118,13 @@ class __$registerModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? message = freezed,
+    Object? token = freezed,
     Object? user = freezed,
   }) {
     return _then(_registerModel(
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String,
       user: user == freezed
           ? _value.user
@@ -137,19 +137,19 @@ class __$registerModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_registerModel implements _registerModel {
-  _$_registerModel({required this.message, required this.user});
+  _$_registerModel({required this.token, required this.user});
 
   factory _$_registerModel.fromJson(Map<String, dynamic> json) =>
       _$$_registerModelFromJson(json);
 
   @override
-  final String message;
+  final String token;
   @override
   final UserModel user;
 
   @override
   String toString() {
-    return 'RegisterModel(message: $message, user: $user)';
+    return 'ResponseModel(token: $token, user: $user)';
   }
 
   @override
@@ -157,14 +157,14 @@ class _$_registerModel implements _registerModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _registerModel &&
-            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.token, token) &&
             const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(token),
       const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
@@ -178,15 +178,15 @@ class _$_registerModel implements _registerModel {
   }
 }
 
-abstract class _registerModel implements RegisterModel {
-  factory _registerModel({required String message, required UserModel user}) =
+abstract class _registerModel implements ResponseModel {
+  factory _registerModel({required String token, required UserModel user}) =
       _$_registerModel;
 
   factory _registerModel.fromJson(Map<String, dynamic> json) =
       _$_registerModel.fromJson;
 
   @override
-  String get message;
+  String get token;
   @override
   UserModel get user;
   @override

@@ -23,7 +23,7 @@ class _$UserModelTearOff {
   const _$UserModelTearOff();
 
   _userModel call(
-      {required String id,
+      {required int id,
       required String email,
       required String name,
       String token = ""}) {
@@ -45,7 +45,7 @@ const $UserModel = _$UserModelTearOff();
 
 /// @nodoc
 mixin _$UserModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
@@ -60,7 +60,7 @@ mixin _$UserModel {
 abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res>;
-  $Res call({String id, String email, String name, String token});
+  $Res call({int id, String email, String name, String token});
 }
 
 /// @nodoc
@@ -82,7 +82,7 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -105,7 +105,7 @@ abstract class _$userModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
           _userModel value, $Res Function(_userModel) then) =
       __$userModelCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String email, String name, String token});
+  $Res call({int id, String email, String name, String token});
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class __$userModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -159,7 +159,7 @@ class _$_userModel extends _userModel {
       _$$_userModelFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String email;
   @override
@@ -205,7 +205,7 @@ class _$_userModel extends _userModel {
 
 abstract class _userModel extends UserModel {
   factory _userModel(
-      {required String id,
+      {required int id,
       required String email,
       required String name,
       String token}) = _$_userModel;
@@ -215,7 +215,7 @@ abstract class _userModel extends UserModel {
       _$_userModel.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get email;
   @override

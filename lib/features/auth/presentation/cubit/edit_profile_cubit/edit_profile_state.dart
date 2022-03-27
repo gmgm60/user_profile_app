@@ -7,4 +7,6 @@ class EditProfileState with _$EditProfileState {
   factory EditProfileState.loading() = _loading;
   factory EditProfileState.done() = _done;
   factory EditProfileState.error() = _error;
+  factory EditProfileState.notLogin() = _notLogin;
+  factory EditProfileState.localStorageError() = _localStorageError;
 }

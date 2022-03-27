@@ -8,13 +8,13 @@ import '../../../../core/usecases/usecase.dart';
 import '../repository/user_repo.dart';
 
 @injectable
-class EditProfile implements UseCase<Unit, EditProfileData> {
+class EditProfile implements UseCase<Profile, EditProfileData> {
   final UserRepo _userRepo;
 
   EditProfile(this._userRepo);
 
   @override
-  Future<Either<Failures, Unit>> call(EditProfileData params) async {
+  Future<Either<Failures, Profile>> call(EditProfileData params) async {
     return _userRepo.editProfile(token: params.token, profile: params.profile);
   }
 }

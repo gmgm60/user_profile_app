@@ -3,30 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_profile_app/di/injectable.dart';
 import 'package:user_profile_app/features/auth/domain/validates/validates.dart';
-import 'package:user_profile_app/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
-import 'package:user_profile_app/features/auth/presentation/cubit/login_cubit/login_cubit_state.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_cubit_state.dart';
 import 'package:user_profile_app/features/auth/presentation/routes/router.gr.dart';
-import '../../widgets/custom_elevated_button.dart';
-import '../../widgets/custom_form_field.dart';
+import 'package:user_profile_app/features/auth/presentation/widgets/custom_elevated_button.dart';
+import 'package:user_profile_app/features/auth/presentation/widgets/custom_form_field.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //  final LoginCubit loginCubit = getIt.get<LoginCubit>()..isLogin();
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("login"),
-      ),
-      body: ListView(
-        children: [
-          BlocBuilder<LoginCubit, LoginCubitState>(
-            builder: (context, state) {
-              final LoginCubit loginCubit = context.read<LoginCubit>();
-              return Form(
+    return Builder(
+      builder: (context) {
+        final RegisterCubit registerCubit = getIt.get<RegisterCubit>();
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text("Register"),
+          ),
+          body: ListView(
+            children: [
+              Form(
                 key: formKey,
                 child: Column(
                   children: [
@@ -34,19 +33,30 @@ class LoginPage extends StatelessWidget {
                       height: 20,
                     ),
                     const Text(
-                      "Login",
+                      "Register",
                       style: TextStyle(fontSize: 20, color: Colors.blue),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     CustomFormField(
+                      textLabel: "Name",
+                      initValue: registerCubit.name,
+                      textType: TextInputType.name,
+                      onChanged: (String? name) {
+                        if (name != null) {
+                          registerCubit.editName(name);
+                        }
+                      },
+                      validation: validateName,
+                    ),
+                    CustomFormField(
                       textLabel: "Email",
-                      initValue: loginCubit.email,
+                      initValue: registerCubit.email,
                       textType: TextInputType.emailAddress,
                       onChanged: (String? email) {
                         if (email != null) {
-                          loginCubit.editEmail(email);
+                          registerCubit.editEmail(email);
                         }
                       },
                       validation: validateEmailAddress,
@@ -54,30 +64,30 @@ class LoginPage extends StatelessWidget {
                     CustomFormField(
                       showSuffix: true,
                       isPassword: true,
-                      initValue: loginCubit.password,
+                      initValue: registerCubit.password,
                       textLabel: "Password",
                       textType: TextInputType.text,
                       validation: validatePassword,
                       onChanged: (String? password) {
                         if (password != null) {
-                          loginCubit.editPassword(password);
+                          registerCubit.editPassword(password);
                         }
                       },
                     ),
                     CustomElevatedButton(
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          await loginCubit.login();
+                          await registerCubit.register();
                         }
                       },
-                      text: "Login",
+                      text: "Register",
                       backGroundColor: Colors.blue,
                       textColor: Colors.black,
                     ),
-                    TextButton(onPressed: () {
-                      AutoRouter.of(context).navigate(const RegisterRoute());
-                    }, child: const Text("Or register a new account")),
-                    BlocBuilder<LoginCubit, LoginCubitState>(
+                    TextButton(onPressed: (){
+                      AutoRouter.of(context).navigate(const LoginRoute());
+                    }, child: const Text("Or login with your account")),
+                    BlocBuilder<RegisterCubit, RegisterCubitState>(
                       builder: (context, state) {
                         print("State is $state");
                         return state.map(
@@ -100,11 +110,11 @@ class LoginPage extends StatelessWidget {
                     const Text("data"),
                   ],
                 ),
-              );
-            },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      }
     );
   }
 }

@@ -1,6 +1,4 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../domain/entity/user/user.dart';
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
@@ -8,7 +6,7 @@ part 'user_model.g.dart';
 class UserModel with _$UserModel {
   UserModel._();
   factory UserModel({
-    required String id,
+    required int id,
     required String email,
     required String name,
     @Default("")String token,

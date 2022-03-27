@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'profile_cubit_state.dart';
+part of 'register_cubit_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,8 +15,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$ProfileCubitStateTearOff {
-  const _$ProfileCubitStateTearOff();
+class _$RegisterCubitStateTearOff {
+  const _$RegisterCubitStateTearOff();
 
   _init init() {
     return _init();
@@ -30,22 +30,24 @@ class _$ProfileCubitStateTearOff {
     return _done();
   }
 
-  _error error() {
-    return _error();
+  _error error(String error) {
+    return _error(
+      error,
+    );
   }
 }
 
 /// @nodoc
-const $ProfileCubitState = _$ProfileCubitStateTearOff();
+const $RegisterCubitState = _$RegisterCubitStateTearOff();
 
 /// @nodoc
-mixin _$ProfileCubitState {
+mixin _$RegisterCubitState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
     required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,7 +55,7 @@ mixin _$ProfileCubitState {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,7 +63,7 @@ mixin _$ProfileCubitState {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -93,20 +95,20 @@ mixin _$ProfileCubitState {
 }
 
 /// @nodoc
-abstract class $ProfileCubitStateCopyWith<$Res> {
-  factory $ProfileCubitStateCopyWith(
-          ProfileCubitState value, $Res Function(ProfileCubitState) then) =
-      _$ProfileCubitStateCopyWithImpl<$Res>;
+abstract class $RegisterCubitStateCopyWith<$Res> {
+  factory $RegisterCubitStateCopyWith(
+          RegisterCubitState value, $Res Function(RegisterCubitState) then) =
+      _$RegisterCubitStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ProfileCubitStateCopyWithImpl<$Res>
-    implements $ProfileCubitStateCopyWith<$Res> {
-  _$ProfileCubitStateCopyWithImpl(this._value, this._then);
+class _$RegisterCubitStateCopyWithImpl<$Res>
+    implements $RegisterCubitStateCopyWith<$Res> {
+  _$RegisterCubitStateCopyWithImpl(this._value, this._then);
 
-  final ProfileCubitState _value;
+  final RegisterCubitState _value;
   // ignore: unused_field
-  final $Res Function(ProfileCubitState) _then;
+  final $Res Function(RegisterCubitState) _then;
 }
 
 /// @nodoc
@@ -116,7 +118,7 @@ abstract class _$initCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$initCopyWithImpl<$Res> extends _$ProfileCubitStateCopyWithImpl<$Res>
+class __$initCopyWithImpl<$Res> extends _$RegisterCubitStateCopyWithImpl<$Res>
     implements _$initCopyWith<$Res> {
   __$initCopyWithImpl(_init _value, $Res Function(_init) _then)
       : super(_value, (v) => _then(v as _init));
@@ -132,7 +134,7 @@ class _$_init implements _init {
 
   @override
   String toString() {
-    return 'ProfileCubitState.init()';
+    return 'RegisterCubitState.init()';
   }
 
   @override
@@ -150,7 +152,7 @@ class _$_init implements _init {
     required TResult Function() init,
     required TResult Function() loading,
     required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(String error) error,
   }) {
     return init();
   }
@@ -161,7 +163,7 @@ class _$_init implements _init {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
   }) {
     return init?.call();
   }
@@ -172,7 +174,7 @@ class _$_init implements _init {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -219,7 +221,7 @@ class _$_init implements _init {
   }
 }
 
-abstract class _init implements ProfileCubitState {
+abstract class _init implements RegisterCubitState {
   factory _init() = _$_init;
 }
 
@@ -230,7 +232,8 @@ abstract class _$loadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$loadingCopyWithImpl<$Res> extends _$ProfileCubitStateCopyWithImpl<$Res>
+class __$loadingCopyWithImpl<$Res>
+    extends _$RegisterCubitStateCopyWithImpl<$Res>
     implements _$loadingCopyWith<$Res> {
   __$loadingCopyWithImpl(_loading _value, $Res Function(_loading) _then)
       : super(_value, (v) => _then(v as _loading));
@@ -246,7 +249,7 @@ class _$_loading implements _loading {
 
   @override
   String toString() {
-    return 'ProfileCubitState.loading()';
+    return 'RegisterCubitState.loading()';
   }
 
   @override
@@ -264,7 +267,7 @@ class _$_loading implements _loading {
     required TResult Function() init,
     required TResult Function() loading,
     required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(String error) error,
   }) {
     return loading();
   }
@@ -275,7 +278,7 @@ class _$_loading implements _loading {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -286,7 +289,7 @@ class _$_loading implements _loading {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -333,7 +336,7 @@ class _$_loading implements _loading {
   }
 }
 
-abstract class _loading implements ProfileCubitState {
+abstract class _loading implements RegisterCubitState {
   factory _loading() = _$_loading;
 }
 
@@ -344,7 +347,7 @@ abstract class _$doneCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$doneCopyWithImpl<$Res> extends _$ProfileCubitStateCopyWithImpl<$Res>
+class __$doneCopyWithImpl<$Res> extends _$RegisterCubitStateCopyWithImpl<$Res>
     implements _$doneCopyWith<$Res> {
   __$doneCopyWithImpl(_done _value, $Res Function(_done) _then)
       : super(_value, (v) => _then(v as _done));
@@ -360,7 +363,7 @@ class _$_done implements _done {
 
   @override
   String toString() {
-    return 'ProfileCubitState.done()';
+    return 'RegisterCubitState.done()';
   }
 
   @override
@@ -378,7 +381,7 @@ class _$_done implements _done {
     required TResult Function() init,
     required TResult Function() loading,
     required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(String error) error,
   }) {
     return done();
   }
@@ -389,7 +392,7 @@ class _$_done implements _done {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
   }) {
     return done?.call();
   }
@@ -400,7 +403,7 @@ class _$_done implements _done {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
@@ -447,7 +450,7 @@ class _$_done implements _done {
   }
 }
 
-abstract class _done implements ProfileCubitState {
+abstract class _done implements RegisterCubitState {
   factory _done() = _$_done;
 }
 
@@ -455,36 +458,60 @@ abstract class _done implements ProfileCubitState {
 abstract class _$errorCopyWith<$Res> {
   factory _$errorCopyWith(_error value, $Res Function(_error) then) =
       __$errorCopyWithImpl<$Res>;
+  $Res call({String error});
 }
 
 /// @nodoc
-class __$errorCopyWithImpl<$Res> extends _$ProfileCubitStateCopyWithImpl<$Res>
+class __$errorCopyWithImpl<$Res> extends _$RegisterCubitStateCopyWithImpl<$Res>
     implements _$errorCopyWith<$Res> {
   __$errorCopyWithImpl(_error _value, $Res Function(_error) _then)
       : super(_value, (v) => _then(v as _error));
 
   @override
   _error get _value => super._value as _error;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(_error(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_error implements _error {
-  _$_error();
+  _$_error(this.error);
+
+  @override
+  final String error;
 
   @override
   String toString() {
-    return 'ProfileCubitState.error()';
+    return 'RegisterCubitState.error(error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _error);
+        (other.runtimeType == runtimeType &&
+            other is _error &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+
+  @JsonKey(ignore: true)
+  @override
+  _$errorCopyWith<_error> get copyWith =>
+      __$errorCopyWithImpl<_error>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -492,9 +519,9 @@ class _$_error implements _error {
     required TResult Function() init,
     required TResult Function() loading,
     required TResult Function() done,
-    required TResult Function() error,
+    required TResult Function(String error) error,
   }) {
-    return error();
+    return error(this.error);
   }
 
   @override
@@ -503,9 +530,9 @@ class _$_error implements _error {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
   }) {
-    return error?.call();
+    return error?.call(this.error);
   }
 
   @override
@@ -514,11 +541,11 @@ class _$_error implements _error {
     TResult Function()? init,
     TResult Function()? loading,
     TResult Function()? done,
-    TResult Function()? error,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(this.error);
     }
     return orElse();
   }
@@ -561,6 +588,10 @@ class _$_error implements _error {
   }
 }
 
-abstract class _error implements ProfileCubitState {
-  factory _error() = _$_error;
+abstract class _error implements RegisterCubitState {
+  factory _error(String error) = _$_error;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$errorCopyWith<_error> get copyWith => throw _privateConstructorUsedError;
 }

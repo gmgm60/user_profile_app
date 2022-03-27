@@ -17,15 +17,16 @@ class Register implements UseCase<User, RegisterData> {
 
   @override
   Future<Either<Failures, User>> call(RegisterData params) async {
-    return _userRepo.register(email: params.email, password: params.password);
+    return _userRepo.register(name: params.name,email: params.email, password: params.password);
   }
 }
 
 class RegisterData extends Equatable {
+  final String name;
   final String email;
   final String password;
 
-  const RegisterData({required this.email, required this.password});
+  const RegisterData( {required this.name,required this.email, required this.password});
 
   @override
   List<Object?> get props => [email, password];

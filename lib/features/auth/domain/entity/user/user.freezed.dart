@@ -19,7 +19,7 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _user call(
-      {required String id,
+      {required int id,
       required String email,
       required String name,
       required String token}) {
@@ -37,7 +37,7 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({String id, String email, String name, String token});
+  $Res call({int id, String email, String name, String token});
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -94,7 +94,7 @@ abstract class _$userCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$userCopyWith(_user value, $Res Function(_user) then) =
       __$userCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String email, String name, String token});
+  $Res call({int id, String email, String name, String token});
 }
 
 /// @nodoc
@@ -117,7 +117,7 @@ class __$userCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ class _$_user implements _user {
       required this.token});
 
   @override
-  final String id;
+  final int id;
   @override
   final String email;
   @override
@@ -184,13 +184,13 @@ class _$_user implements _user {
 
 abstract class _user implements User {
   factory _user(
-      {required String id,
+      {required int id,
       required String email,
       required String name,
       required String token}) = _$_user;
 
   @override
-  String get id;
+  int get id;
   @override
   String get email;
   @override

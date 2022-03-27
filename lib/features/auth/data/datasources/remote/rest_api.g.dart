@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'remote_data_source.dart';
+part of 'rest_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,9 +8,9 @@ part of 'remote_data_source.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps
 
-class _RemoteDataSource implements RemoteDataSource {
-  _RemoteDataSource(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://mega-user-profile.herokuapp.com/api/';
+class _RestApiImp implements RestApiImp {
+  _RestApiImp(this._dio, {this.baseUrl}) {
+    baseUrl ??= 'https://api-sanctum-package.herokuapp.com/api/';
   }
 
   final Dio _dio;
@@ -18,7 +18,7 @@ class _RemoteDataSource implements RemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<LoginModel> login({required email, required password}) async {
+  Future<ResponseModel> login({required email, required password}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'email': email,
@@ -27,17 +27,17 @@ class _RemoteDataSource implements RemoteDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<LoginModel>(
+        _setStreamType<ResponseModel>(
             Options(method: 'POST', headers: _headers, extra: _extra)
                 .compose(_dio.options, 'login',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = LoginModel.fromJson(_result.data!);
+    final value = ResponseModel.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<RegisterModel> register(
+  Future<ResponseModel> register(
       {name = "no name",
       required email,
       required password,
@@ -52,48 +52,73 @@ class _RemoteDataSource implements RemoteDataSource {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<RegisterModel>(
+        _setStreamType<ResponseModel>(
             Options(method: 'POST', headers: _headers, extra: _extra)
                 .compose(_dio.options, 'register',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = RegisterModel.fromJson(_result.data!);
+    final value = ResponseModel.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<ProfileModel> getProfile({required token}) async {
+  Future<ProfileDataModel> getProfile({required token}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'token': token};
-    final _headers = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ProfileModel>(
-            Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/profile',
+        _setStreamType<ProfileDataModel>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'user',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ProfileModel.fromJson(_result.data!);
+    final value = ProfileDataModel.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<ProfileModel> editProfile(
+  Future<ProfileDataModel> editProfile(
       {required token, required profileModel}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'token': token,
-      r'profile': profileModel.toJson()
-    };
-    final _headers = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
+    _data.addAll(profileModel.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ProfileModel>(
-            Options(method: 'PUT', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/profile',
+        _setStreamType<ProfileDataModel>(
+            Options(method: 'POST', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'edit_user',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ProfileModel.fromJson(_result.data!);
+    final value = ProfileDataModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<UploadImageModel> uploadImage(image,
+      {token = "751a8fa64c568b7f68f4514c7a01a1e9"}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'key': token};
+    final _headers = <String, dynamic>{};
+    final _data = FormData();
+    _data.files.add(MapEntry(
+        'image',
+        MultipartFile.fromFileSync(image.path,
+            filename: image.path.split(Platform.pathSeparator).last)));
+    _data.fields.add(MapEntry('token', token));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UploadImageModel>(Options(
+                method: 'POST',
+                headers: _headers,
+                extra: _extra,
+                contentType: 'multipart/form-data')
+            .compose(_dio.options, 'https://api.imgbb.com/1/upload',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = UploadImageModel.fromJson(_result.data!);
     return value;
   }
 

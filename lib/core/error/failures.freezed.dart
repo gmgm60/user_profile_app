@@ -22,8 +22,14 @@ class _$FailuresTearOff {
     return _noUser();
   }
 
-  _serverError serverError() {
-    return _serverError();
+  _serverError serverError(String error) {
+    return _serverError(
+      error,
+    );
+  }
+
+  _localStorageError localStorageError() {
+    return _localStorageError();
   }
 }
 
@@ -35,19 +41,22 @@ mixin _$Failures {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noUser,
-    required TResult Function() serverError,
+    required TResult Function(String error) serverError,
+    required TResult Function() localStorageError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? noUser,
-    TResult Function()? serverError,
+    TResult Function(String error)? serverError,
+    TResult Function()? localStorageError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noUser,
-    TResult Function()? serverError,
+    TResult Function(String error)? serverError,
+    TResult Function()? localStorageError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,18 +64,21 @@ mixin _$Failures {
   TResult map<TResult extends Object?>({
     required TResult Function(_noUser value) noUser,
     required TResult Function(_serverError value) serverError,
+    required TResult Function(_localStorageError value) localStorageError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_noUser value)? noUser,
     TResult Function(_serverError value)? serverError,
+    TResult Function(_localStorageError value)? localStorageError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_noUser value)? noUser,
     TResult Function(_serverError value)? serverError,
+    TResult Function(_localStorageError value)? localStorageError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +138,8 @@ class _$_noUser implements _noUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noUser,
-    required TResult Function() serverError,
+    required TResult Function(String error) serverError,
+    required TResult Function() localStorageError,
   }) {
     return noUser();
   }
@@ -135,7 +148,8 @@ class _$_noUser implements _noUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? noUser,
-    TResult Function()? serverError,
+    TResult Function(String error)? serverError,
+    TResult Function()? localStorageError,
   }) {
     return noUser?.call();
   }
@@ -144,7 +158,8 @@ class _$_noUser implements _noUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noUser,
-    TResult Function()? serverError,
+    TResult Function(String error)? serverError,
+    TResult Function()? localStorageError,
     required TResult orElse(),
   }) {
     if (noUser != null) {
@@ -158,6 +173,7 @@ class _$_noUser implements _noUser {
   TResult map<TResult extends Object?>({
     required TResult Function(_noUser value) noUser,
     required TResult Function(_serverError value) serverError,
+    required TResult Function(_localStorageError value) localStorageError,
   }) {
     return noUser(this);
   }
@@ -167,6 +183,7 @@ class _$_noUser implements _noUser {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_noUser value)? noUser,
     TResult Function(_serverError value)? serverError,
+    TResult Function(_localStorageError value)? localStorageError,
   }) {
     return noUser?.call(this);
   }
@@ -176,6 +193,7 @@ class _$_noUser implements _noUser {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_noUser value)? noUser,
     TResult Function(_serverError value)? serverError,
+    TResult Function(_localStorageError value)? localStorageError,
     required TResult orElse(),
   }) {
     if (noUser != null) {
@@ -194,6 +212,7 @@ abstract class _$serverErrorCopyWith<$Res> {
   factory _$serverErrorCopyWith(
           _serverError value, $Res Function(_serverError) then) =
       __$serverErrorCopyWithImpl<$Res>;
+  $Res call({String error});
 }
 
 /// @nodoc
@@ -205,54 +224,80 @@ class __$serverErrorCopyWithImpl<$Res> extends _$FailuresCopyWithImpl<$Res>
 
   @override
   _serverError get _value => super._value as _serverError;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(_serverError(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_serverError implements _serverError {
-  _$_serverError();
+  _$_serverError(this.error);
+
+  @override
+  final String error;
 
   @override
   String toString() {
-    return 'Failures.serverError()';
+    return 'Failures.serverError(error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _serverError);
+        (other.runtimeType == runtimeType &&
+            other is _serverError &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+
+  @JsonKey(ignore: true)
+  @override
+  _$serverErrorCopyWith<_serverError> get copyWith =>
+      __$serverErrorCopyWithImpl<_serverError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() noUser,
-    required TResult Function() serverError,
+    required TResult Function(String error) serverError,
+    required TResult Function() localStorageError,
   }) {
-    return serverError();
+    return serverError(error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? noUser,
-    TResult Function()? serverError,
+    TResult Function(String error)? serverError,
+    TResult Function()? localStorageError,
   }) {
-    return serverError?.call();
+    return serverError?.call(error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? noUser,
-    TResult Function()? serverError,
+    TResult Function(String error)? serverError,
+    TResult Function()? localStorageError,
     required TResult orElse(),
   }) {
     if (serverError != null) {
-      return serverError();
+      return serverError(error);
     }
     return orElse();
   }
@@ -262,6 +307,7 @@ class _$_serverError implements _serverError {
   TResult map<TResult extends Object?>({
     required TResult Function(_noUser value) noUser,
     required TResult Function(_serverError value) serverError,
+    required TResult Function(_localStorageError value) localStorageError,
   }) {
     return serverError(this);
   }
@@ -271,6 +317,7 @@ class _$_serverError implements _serverError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_noUser value)? noUser,
     TResult Function(_serverError value)? serverError,
+    TResult Function(_localStorageError value)? localStorageError,
   }) {
     return serverError?.call(this);
   }
@@ -280,6 +327,7 @@ class _$_serverError implements _serverError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_noUser value)? noUser,
     TResult Function(_serverError value)? serverError,
+    TResult Function(_localStorageError value)? localStorageError,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -290,5 +338,121 @@ class _$_serverError implements _serverError {
 }
 
 abstract class _serverError implements Failures {
-  factory _serverError() = _$_serverError;
+  factory _serverError(String error) = _$_serverError;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$serverErrorCopyWith<_serverError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$localStorageErrorCopyWith<$Res> {
+  factory _$localStorageErrorCopyWith(
+          _localStorageError value, $Res Function(_localStorageError) then) =
+      __$localStorageErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$localStorageErrorCopyWithImpl<$Res>
+    extends _$FailuresCopyWithImpl<$Res>
+    implements _$localStorageErrorCopyWith<$Res> {
+  __$localStorageErrorCopyWithImpl(
+      _localStorageError _value, $Res Function(_localStorageError) _then)
+      : super(_value, (v) => _then(v as _localStorageError));
+
+  @override
+  _localStorageError get _value => super._value as _localStorageError;
+}
+
+/// @nodoc
+
+class _$_localStorageError implements _localStorageError {
+  _$_localStorageError();
+
+  @override
+  String toString() {
+    return 'Failures.localStorageError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _localStorageError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() noUser,
+    required TResult Function(String error) serverError,
+    required TResult Function() localStorageError,
+  }) {
+    return localStorageError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? noUser,
+    TResult Function(String error)? serverError,
+    TResult Function()? localStorageError,
+  }) {
+    return localStorageError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? noUser,
+    TResult Function(String error)? serverError,
+    TResult Function()? localStorageError,
+    required TResult orElse(),
+  }) {
+    if (localStorageError != null) {
+      return localStorageError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_noUser value) noUser,
+    required TResult Function(_serverError value) serverError,
+    required TResult Function(_localStorageError value) localStorageError,
+  }) {
+    return localStorageError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_noUser value)? noUser,
+    TResult Function(_serverError value)? serverError,
+    TResult Function(_localStorageError value)? localStorageError,
+  }) {
+    return localStorageError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_noUser value)? noUser,
+    TResult Function(_serverError value)? serverError,
+    TResult Function(_localStorageError value)? localStorageError,
+    required TResult orElse(),
+  }) {
+    if (localStorageError != null) {
+      return localStorageError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _localStorageError implements Failures {
+  factory _localStorageError() = _$_localStorageError;
 }

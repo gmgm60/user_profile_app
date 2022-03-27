@@ -26,14 +26,14 @@ class _$LoginCubitStateTearOff {
     return _loading();
   }
 
-  _done done({required User user}) {
-    return _done(
-      user: user,
-    );
+  _done done() {
+    return _done();
   }
 
-  _error error() {
-    return _error();
+  _error error(String error) {
+    return _error(
+      error,
+    );
   }
 }
 
@@ -46,24 +46,24 @@ mixin _$LoginCubitState {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(User user) done,
-    required TResult Function() error,
+    required TResult Function() done,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -151,8 +151,8 @@ class _$_init implements _init {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(User user) done,
-    required TResult Function() error,
+    required TResult Function() done,
+    required TResult Function(String error) error,
   }) {
     return init();
   }
@@ -162,8 +162,8 @@ class _$_init implements _init {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
   }) {
     return init?.call();
   }
@@ -173,8 +173,8 @@ class _$_init implements _init {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -265,8 +265,8 @@ class _$_loading implements _loading {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(User user) done,
-    required TResult Function() error,
+    required TResult Function() done,
+    required TResult Function(String error) error,
   }) {
     return loading();
   }
@@ -276,8 +276,8 @@ class _$_loading implements _loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -287,8 +287,8 @@ class _$_loading implements _loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -343,9 +343,6 @@ abstract class _loading implements LoginCubitState {
 abstract class _$doneCopyWith<$Res> {
   factory _$doneCopyWith(_done value, $Res Function(_done) then) =
       __$doneCopyWithImpl<$Res>;
-  $Res call({User user});
-
-  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -356,66 +353,36 @@ class __$doneCopyWithImpl<$Res> extends _$LoginCubitStateCopyWithImpl<$Res>
 
   @override
   _done get _value => super._value as _done;
-
-  @override
-  $Res call({
-    Object? user = freezed,
-  }) {
-    return _then(_done(
-      user: user == freezed
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get user {
-    return $UserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$_done implements _done {
-  _$_done({required this.user});
-
-  @override
-  final User user;
+  _$_done();
 
   @override
   String toString() {
-    return 'LoginCubitState.done(user: $user)';
+    return 'LoginCubitState.done()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _done &&
-            const DeepCollectionEquality().equals(other.user, user));
+        (other.runtimeType == runtimeType && other is _done);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
-
-  @JsonKey(ignore: true)
-  @override
-  _$doneCopyWith<_done> get copyWith =>
-      __$doneCopyWithImpl<_done>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(User user) done,
-    required TResult Function() error,
+    required TResult Function() done,
+    required TResult Function(String error) error,
   }) {
-    return done(user);
+    return done();
   }
 
   @override
@@ -423,10 +390,10 @@ class _$_done implements _done {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
   }) {
-    return done?.call(user);
+    return done?.call();
   }
 
   @override
@@ -434,12 +401,12 @@ class _$_done implements _done {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done(user);
+      return done();
     }
     return orElse();
   }
@@ -483,17 +450,14 @@ class _$_done implements _done {
 }
 
 abstract class _done implements LoginCubitState {
-  factory _done({required User user}) = _$_done;
-
-  User get user;
-  @JsonKey(ignore: true)
-  _$doneCopyWith<_done> get copyWith => throw _privateConstructorUsedError;
+  factory _done() = _$_done;
 }
 
 /// @nodoc
 abstract class _$errorCopyWith<$Res> {
   factory _$errorCopyWith(_error value, $Res Function(_error) then) =
       __$errorCopyWithImpl<$Res>;
+  $Res call({String error});
 }
 
 /// @nodoc
@@ -504,36 +468,59 @@ class __$errorCopyWithImpl<$Res> extends _$LoginCubitStateCopyWithImpl<$Res>
 
   @override
   _error get _value => super._value as _error;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(_error(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_error implements _error {
-  _$_error();
+  _$_error(this.error);
+
+  @override
+  final String error;
 
   @override
   String toString() {
-    return 'LoginCubitState.error()';
+    return 'LoginCubitState.error(error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _error);
+        (other.runtimeType == runtimeType &&
+            other is _error &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+
+  @JsonKey(ignore: true)
+  @override
+  _$errorCopyWith<_error> get copyWith =>
+      __$errorCopyWithImpl<_error>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function() loading,
-    required TResult Function(User user) done,
-    required TResult Function() error,
+    required TResult Function() done,
+    required TResult Function(String error) error,
   }) {
-    return error();
+    return error(this.error);
   }
 
   @override
@@ -541,10 +528,10 @@ class _$_error implements _error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
   }) {
-    return error?.call();
+    return error?.call(this.error);
   }
 
   @override
@@ -552,12 +539,12 @@ class _$_error implements _error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function()? loading,
-    TResult Function(User user)? done,
-    TResult Function()? error,
+    TResult Function()? done,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(this.error);
     }
     return orElse();
   }
@@ -601,5 +588,9 @@ class _$_error implements _error {
 }
 
 abstract class _error implements LoginCubitState {
-  factory _error() = _$_error;
+  factory _error(String error) = _$_error;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$errorCopyWith<_error> get copyWith => throw _privateConstructorUsedError;
 }
