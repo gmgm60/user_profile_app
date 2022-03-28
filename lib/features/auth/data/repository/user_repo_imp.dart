@@ -22,7 +22,7 @@ class UserRepoImp implements UserRepo {
 
   @override
   Future<Either<Failures, Profile>> editProfile(
-      {required String token, required Profile profile}) async {
+      {required Profile profile}) async {
     try {
       if(Uri.parse(profile.image).host == "" ? true : false){
         final url = await uploadImage(File(profile.image));
@@ -30,6 +30,7 @@ class UserRepoImp implements UserRepo {
       }
        ProfileModel profileModel = ProfileModel.toModel(profile);
       print("profile model : ${profileModel}");
+      final String token =await _localeDataStore.getToken() ?? "";
        final ProfileDataModel profileDataModel = await _remoteDataSource.editProfile(
           token: token, profileModel: profileModel);
        final ProfileModel profileModel2 = profileDataModel.profileModel;
@@ -43,8 +44,9 @@ class UserRepoImp implements UserRepo {
   }
 
   @override
-  Future<Either<Failures, Profile>> getProfile({required String token}) async {
+  Future<Either<Failures, Profile>> getProfile() async {
     try {
+      final String token =await _localeDataStore.getToken() ?? "";
       final ProfileDataModel profileDataModel =
           await _remoteDataSource.getProfile(token: token);
       final ProfileModel profileModel = profileDataModel.profileModel;

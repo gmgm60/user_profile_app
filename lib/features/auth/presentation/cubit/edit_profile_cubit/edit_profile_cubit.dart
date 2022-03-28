@@ -61,29 +61,15 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   Future<void> updateProfile() async {
     emit(EditProfileState.loading());
     print("edit profile to : $profile");
-    final token = await getToken();
-    if (token != null) {
       EditProfileData editProfileData =
-          EditProfileData(profile: profile, token: token);
+          EditProfileData(profile: profile);
       final result = await _editProfile(editProfileData);
       result.fold((error) {
         emit(EditProfileState.error());
-      }, (unit) {
-        emit(EditProfileState.done());
+      }, (profile) {
+        emit(EditProfileState.done(profile: profile));
       });
-    } else {
-      emit(EditProfileState.notLogin());
-    }
     print("state $state");
   }
 
-  Future<String?> getToken() async {
-    final result = await _getToken(NoParams());
-    return result.fold((localStoreError) {
-      emit(EditProfileState.localStorageError());
-      return null;
-    }, (token) {
-      return token;
-    });
-  }
 }

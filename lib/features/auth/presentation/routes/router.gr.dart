@@ -16,8 +16,8 @@ import 'package:flutter/material.dart' as _i6;
 import '../../domain/entity/profile/profile.dart' as _i7;
 import '../pages/edit_profile_page/edit_profile_page.dart' as _i4;
 import '../pages/login_page/login_page.dart' as _i1;
-import '../pages/profile_page/profile_page.dart' as _i3;
 import '../pages/register_page/register_page.dart' as _i2;
+import '../pages/view_profile_page/view_profile_page.dart' as _i3;
 
 class AppRouter extends _i5.RootStackRouter {
   AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
@@ -33,9 +33,9 @@ class AppRouter extends _i5.RootStackRouter {
       return _i5.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i2.RegisterPage());
     },
-    ProfileRoute.name: (routeData) {
+    ViewProfileRoute.name: (routeData) {
       return _i5.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.ProfilePage());
+          routeData: routeData, child: const _i3.ViewProfilePage());
     },
     EditProfileRoute.name: (routeData) {
       final args = routeData.argsAs<EditProfileRouteArgs>();
@@ -51,7 +51,7 @@ class AppRouter extends _i5.RootStackRouter {
             path: '/', redirectTo: 'login', fullMatch: true),
         _i5.RouteConfig(LoginRoute.name, path: 'login'),
         _i5.RouteConfig(RegisterRoute.name, path: 'register'),
-        _i5.RouteConfig(ProfileRoute.name, path: 'profile'),
+        _i5.RouteConfig(ViewProfileRoute.name, path: 'profile'),
         _i5.RouteConfig(EditProfileRoute.name, path: 'edit_profile')
       ];
 }
@@ -73,11 +73,11 @@ class RegisterRoute extends _i5.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.ProfilePage]
-class ProfileRoute extends _i5.PageRouteInfo<void> {
-  const ProfileRoute() : super(ProfileRoute.name, path: 'profile');
+/// [_i3.ViewProfilePage]
+class ViewProfileRoute extends _i5.PageRouteInfo<void> {
+  const ViewProfileRoute() : super(ViewProfileRoute.name, path: 'profile');
 
-  static const String name = 'ProfileRoute';
+  static const String name = 'ViewProfileRoute';
 }
 
 /// generated route for

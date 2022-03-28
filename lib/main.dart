@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/view_profile_cubit/view_profile_cubit.dart';
 import 'di/injectable.dart';
@@ -22,8 +23,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt.get<LoginCubit>()
-            ..isLogin(),
+          create: (context) => getIt.get<AuthCubit>()..isLogin(),
+        ),
+        BlocProvider(
+          create: (context) => getIt.get<LoginCubit>(),
         ),
         BlocProvider(
           create: (context) => getIt.get<RegisterCubit>(),

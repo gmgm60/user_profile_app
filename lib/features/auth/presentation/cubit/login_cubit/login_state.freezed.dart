@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'register_cubit_state.dart';
+part of 'login_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,8 +15,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$RegisterCubitStateTearOff {
-  const _$RegisterCubitStateTearOff();
+class _$LoginStateTearOff {
+  const _$LoginStateTearOff();
 
   _init init() {
     return _init();
@@ -38,10 +38,10 @@ class _$RegisterCubitStateTearOff {
 }
 
 /// @nodoc
-const $RegisterCubitState = _$RegisterCubitStateTearOff();
+const $LoginState = _$LoginStateTearOff();
 
 /// @nodoc
-mixin _$RegisterCubitState {
+mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
@@ -95,20 +95,19 @@ mixin _$RegisterCubitState {
 }
 
 /// @nodoc
-abstract class $RegisterCubitStateCopyWith<$Res> {
-  factory $RegisterCubitStateCopyWith(
-          RegisterCubitState value, $Res Function(RegisterCubitState) then) =
-      _$RegisterCubitStateCopyWithImpl<$Res>;
+abstract class $LoginStateCopyWith<$Res> {
+  factory $LoginStateCopyWith(
+          LoginState value, $Res Function(LoginState) then) =
+      _$LoginStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegisterCubitStateCopyWithImpl<$Res>
-    implements $RegisterCubitStateCopyWith<$Res> {
-  _$RegisterCubitStateCopyWithImpl(this._value, this._then);
+class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
+  _$LoginStateCopyWithImpl(this._value, this._then);
 
-  final RegisterCubitState _value;
+  final LoginState _value;
   // ignore: unused_field
-  final $Res Function(RegisterCubitState) _then;
+  final $Res Function(LoginState) _then;
 }
 
 /// @nodoc
@@ -118,7 +117,7 @@ abstract class _$initCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$initCopyWithImpl<$Res> extends _$RegisterCubitStateCopyWithImpl<$Res>
+class __$initCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements _$initCopyWith<$Res> {
   __$initCopyWithImpl(_init _value, $Res Function(_init) _then)
       : super(_value, (v) => _then(v as _init));
@@ -134,7 +133,7 @@ class _$_init implements _init {
 
   @override
   String toString() {
-    return 'RegisterCubitState.init()';
+    return 'LoginState.init()';
   }
 
   @override
@@ -221,7 +220,7 @@ class _$_init implements _init {
   }
 }
 
-abstract class _init implements RegisterCubitState {
+abstract class _init implements LoginState {
   factory _init() = _$_init;
 }
 
@@ -232,8 +231,7 @@ abstract class _$loadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$loadingCopyWithImpl<$Res>
-    extends _$RegisterCubitStateCopyWithImpl<$Res>
+class __$loadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements _$loadingCopyWith<$Res> {
   __$loadingCopyWithImpl(_loading _value, $Res Function(_loading) _then)
       : super(_value, (v) => _then(v as _loading));
@@ -249,7 +247,7 @@ class _$_loading implements _loading {
 
   @override
   String toString() {
-    return 'RegisterCubitState.loading()';
+    return 'LoginState.loading()';
   }
 
   @override
@@ -336,7 +334,7 @@ class _$_loading implements _loading {
   }
 }
 
-abstract class _loading implements RegisterCubitState {
+abstract class _loading implements LoginState {
   factory _loading() = _$_loading;
 }
 
@@ -347,7 +345,7 @@ abstract class _$doneCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$doneCopyWithImpl<$Res> extends _$RegisterCubitStateCopyWithImpl<$Res>
+class __$doneCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements _$doneCopyWith<$Res> {
   __$doneCopyWithImpl(_done _value, $Res Function(_done) _then)
       : super(_value, (v) => _then(v as _done));
@@ -363,7 +361,7 @@ class _$_done implements _done {
 
   @override
   String toString() {
-    return 'RegisterCubitState.done()';
+    return 'LoginState.done()';
   }
 
   @override
@@ -450,7 +448,7 @@ class _$_done implements _done {
   }
 }
 
-abstract class _done implements RegisterCubitState {
+abstract class _done implements LoginState {
   factory _done() = _$_done;
 }
 
@@ -462,7 +460,7 @@ abstract class _$errorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$errorCopyWithImpl<$Res> extends _$RegisterCubitStateCopyWithImpl<$Res>
+class __$errorCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements _$errorCopyWith<$Res> {
   __$errorCopyWithImpl(_error _value, $Res Function(_error) _then)
       : super(_value, (v) => _then(v as _error));
@@ -493,7 +491,7 @@ class _$_error implements _error {
 
   @override
   String toString() {
-    return 'RegisterCubitState.error(error: $error)';
+    return 'LoginState.error(error: $error)';
   }
 
   @override
@@ -588,7 +586,7 @@ class _$_error implements _error {
   }
 }
 
-abstract class _error implements RegisterCubitState {
+abstract class _error implements LoginState {
   factory _error(String error) = _$_error;
 
   String get error;

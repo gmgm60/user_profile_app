@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_profile_app/di/injectable.dart';
 import 'package:user_profile_app/features/auth/domain/validates/validates.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_state.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
-import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_cubit_state.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_state.dart';
 import 'package:user_profile_app/features/auth/presentation/routes/router.gr.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/custom_elevated_button.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/custom_form_field.dart';
@@ -15,10 +17,27 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return Builder(
-      builder: (context) {
-        final RegisterCubit registerCubit = getIt.get<RegisterCubit>();
-        return Scaffold(
+    return Builder(builder: (context) {
+      final RegisterCubit registerCubit = context.read<RegisterCubit>();
+
+      final AuthCubit authCubit = context.read<AuthCubit>();
+
+      return BlocListener<AuthCubit, AuthState>(
+        listener: (context, state) {
+          state.map(
+              init: (_) => authCubit.isLogin(),
+              loading: (_) {},
+              login: (_) {
+                AutoRouter.of(context).replace(const ViewProfileRoute());
+              },
+              logout: (_) {},
+              error: (errorState) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("auth error"),
+                ));
+              });
+        },
+        child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
             title: const Text("Register"),
@@ -84,10 +103,12 @@ class RegisterPage extends StatelessWidget {
                       backGroundColor: Colors.blue,
                       textColor: Colors.black,
                     ),
-                    TextButton(onPressed: (){
-                      AutoRouter.of(context).navigate(const LoginRoute());
-                    }, child: const Text("Or login with your account")),
-                    BlocBuilder<RegisterCubit, RegisterCubitState>(
+                    TextButton(
+                        onPressed: () {
+                          AutoRouter.of(context).navigate(const LoginRoute());
+                        },
+                        child: const Text("Or login with your account")),
+                    BlocBuilder<RegisterCubit, RegisterState>(
                       builder: (context, state) {
                         print("State is $state");
                         return state.map(
@@ -96,8 +117,8 @@ class RegisterPage extends StatelessWidget {
                             },
                             loading: (_) => const CircularProgressIndicator(),
                             done: (userState) {
-                              AutoRouter.of(context).navigate(
-                                  const ProfileRoute());
+                              AutoRouter.of(context)
+                                  .navigate(const ViewProfileRoute());
                               return const Text("login");
                             },
                             error: (_) {
@@ -107,14 +128,14 @@ class RegisterPage extends StatelessWidget {
                             });
                       },
                     ),
-                    const Text("data"),
+
                   ],
                 ),
               ),
             ],
           ),
-        );
-      }
-    );
+        ),
+      );
+    });
   }
 }

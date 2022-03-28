@@ -6,8 +6,6 @@ part 'view_profile_state.freezed.dart';
 class ViewProfileState with _$ViewProfileState{
   factory ViewProfileState.init() = _init;
   factory ViewProfileState.loading() = _loading;
-  factory ViewProfileState.notLogin() = _notLogin;
   factory ViewProfileState.done({required Profile profile})= _done;
   factory ViewProfileState.error(String error) = _error;
-  factory ViewProfileState.localStorageError() = _localStorageError;
 }

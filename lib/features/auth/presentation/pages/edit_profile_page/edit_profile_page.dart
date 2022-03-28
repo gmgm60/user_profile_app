@@ -81,9 +81,9 @@ class EditProfilePage extends StatelessWidget {
                     loading: (_) {
                       return const Center(child: CircularProgressIndicator());
                     },
-                    done: (profile) {
-                      context.read<ViewProfileCubit>().loadNewProfile();
-                      AutoRouter.of(context).navigate(const ProfileRoute());
+                    done: (doneState) {
+                     context.read<ViewProfileCubit>().updateProfile(doneState.profile);
+                      AutoRouter.of(context).navigate(const ViewProfileRoute());
                       return  Container();
                     },
                     orElse: () {

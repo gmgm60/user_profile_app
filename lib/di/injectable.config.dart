@@ -24,17 +24,18 @@ import '../features/auth/domain/usecases/get_token.dart' as _i14;
 import '../features/auth/domain/usecases/login.dart' as _i15;
 import '../features/auth/domain/usecases/logout.dart' as _i17;
 import '../features/auth/domain/usecases/register.dart' as _i18;
+import '../features/auth/presentation/cubit/auth_cubit/auth_cubit.dart' as _i21;
 import '../features/auth/presentation/cubit/edit_profile_cubit/edit_profile_cubit.dart'
-    as _i21;
+    as _i22;
 import '../features/auth/presentation/cubit/login_cubit/login_cubit.dart'
     as _i16;
 import '../features/auth/presentation/cubit/register_cubit/register_cubit.dart'
     as _i19;
 import '../features/auth/presentation/cubit/view_profile_cubit/view_profile_cubit.dart'
     as _i20;
-import 'module/dio.dart' as _i22;
+import 'module/dio.dart' as _i23;
 import 'module/shared_preferences.dart'
-    as _i23; // ignore_for_file: unnecessary_lambdas
+    as _i24; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -63,13 +64,15 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i18.Register>(() => _i18.Register(get<_i10.UserRepo>()));
   gh.factory<_i19.RegisterCubit>(
       () => _i19.RegisterCubit(get<_i18.Register>(), get<_i14.GetToken>()));
-  gh.factory<_i20.ViewProfileCubit>(() => _i20.ViewProfileCubit(
-      get<_i13.GetProfile>(), get<_i14.GetToken>(), get<_i17.Logout>()));
-  gh.factory<_i21.EditProfileCubit>(() =>
-      _i21.EditProfileCubit(get<_i12.EditProfile>(), get<_i14.GetToken>()));
+  gh.factory<_i20.ViewProfileCubit>(
+      () => _i20.ViewProfileCubit(get<_i13.GetProfile>()));
+  gh.factory<_i21.AuthCubit>(
+      () => _i21.AuthCubit(get<_i14.GetToken>(), get<_i17.Logout>()));
+  gh.factory<_i22.EditProfileCubit>(() =>
+      _i22.EditProfileCubit(get<_i12.EditProfile>(), get<_i14.GetToken>()));
   return get;
 }
 
-class _$MyDioInject extends _i22.MyDioInject {}
+class _$MyDioInject extends _i23.MyDioInject {}
 
-class _$InjectionModule extends _i23.InjectionModule {}
+class _$InjectionModule extends _i24.InjectionModule {}

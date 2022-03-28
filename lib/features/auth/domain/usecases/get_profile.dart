@@ -7,14 +7,14 @@ import '../../../../core/usecases/usecase.dart';
 import '../repository/user_repo.dart';
 
 @injectable
-class GetProfile implements UseCase<Profile, GetProfileData> {
+class GetProfile implements UseCase<Profile, NoParams> {
   final UserRepo _userRepo;
 
   GetProfile(this._userRepo);
 
   @override
-  Future<Either<Failures,Profile >> call(GetProfileData params) async {
-    return _userRepo.getProfile(token: params.token);
+  Future<Either<Failures,Profile >> call(NoParams noParams) async {
+    return _userRepo.getProfile();
   }
 }
 

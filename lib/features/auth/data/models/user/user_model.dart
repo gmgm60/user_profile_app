@@ -15,7 +15,7 @@ class UserModel with _$UserModel {
       _$UserModelFromJson(json);
 
 
-  toDomain(){
+ User toDomain(){
     return User(id: id, email: email, name: name, token: token);
   }
 

@@ -2,19 +2,20 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_profile_app/features/auth/domain/entity/profile/profile.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/view_profile_cubit/view_profile_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/view_profile_cubit/view_profile_state.dart';
 import 'package:user_profile_app/features/auth/presentation/routes/router.gr.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/view_network_file_image.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class ViewProfilePage extends StatefulWidget {
+  const ViewProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<ViewProfilePage> createState() => _ViewProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ViewProfilePageState extends State<ViewProfilePage> {
   @override
   void initState() {
     context.read<ViewProfileCubit>().getProfile();
@@ -29,10 +30,6 @@ class _ProfilePageState extends State<ProfilePage> {
           actions: [
             BlocBuilder<ViewProfileCubit, ViewProfileState>(
               builder: (context, state) {
-                Future<void> logout()async{
-                  await context.read<ViewProfileCubit>().logout();
-                  AutoRouter.of(context).navigate(const LoginRoute());
-                }
                 return state.maybeWhen(
                     orElse: () => Container(),
                     done: (profile) => Row(
@@ -43,8 +40,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                 },
                                 icon: const Icon(Icons.edit)),
                             IconButton(
-                                onPressed: () {
-                                  logout();
+                                onPressed: () async{
+                                 // todo add logout
+                                 await context.read<AuthCubit>().logout();
+                                 AutoRouter.of(context).popUntilRoot();
+                                 AutoRouter.of(context).navigate(const LoginRoute());
+
                                 },
                                 icon: const Icon(Icons.logout)),
                           ],
@@ -157,31 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       const Text("error login"),
                       ElevatedButton(
                           onPressed: () {
-                            context.read<ViewProfileCubit>().logout();
-                          },
-                          child: const Text("Go to Login Page")),
-                    ],
-                  );
-                },
-                notLogin: (_) {
-                  return Column(
-                    children: [
-                      const Text("not login"),
-                      ElevatedButton(
-                          onPressed: () {
-                            context.read<ViewProfileCubit>().logout();
-                          },
-                          child: const Text("Go to Login Page")),
-                    ],
-                  );
-                },
-                localStorageError: (_) {
-                  return Column(
-                    children: [
-                      const Text("no local data"),
-                      ElevatedButton(
-                          onPressed: () {
-                            context.read<ViewProfileCubit>().logout();
+                            // todo
                           },
                           child: const Text("Go to Login Page")),
                     ],
