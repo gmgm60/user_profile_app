@@ -1,16 +1,29 @@
-# user_profile_app
+# User Profile App 
+simple authentication app with flutter, with 4 pages 
+* register
+* login
+* view profile
+* edit profile 
+# Main target of this app
+the main target  is to make clean code using tdd (without test case)
+the packages used in this app :
+* bloc
+* dio 
+* freezed
+* auto route
+* dartz
+* retrofit
+* get_it
+* injectable
+* equatable
+* image_picker
+* image_cropper
+* shared_preferences
 
-A new Flutter project.
+# Screenshots
+## Register page
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register.png?raw=true" width="300">
 
-## Getting Started
+## Login page
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/login.png?raw=true" width="300">
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
