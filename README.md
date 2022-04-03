@@ -24,6 +24,32 @@ the packages used in this app :
 ## Register page
 <img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register.png?raw=true" width="300">
 
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register_validation.png?raw=true" width="300">
+
+
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register_email_taken.png?raw=true" width="300">
+
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register-loading.png?raw=true" width="300">
+
 ## Login page
 <img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/login.png?raw=true" width="300">
 
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/login_loading.png?raw=true" width="300">
+
+
+## View Profile page
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/view_profile.png?raw=true" width="300">
+
+
+## Edit Profile page
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/edit_profile.png?raw=true" width="300">
+
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/edit_profile_validation.png?raw=true" width="300">
+
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/edit_image.png?raw=true" width="300">
+
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/edit_profile_loading.png?raw=true" width="300">
+
+> View Profile page
+
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/view_profile_2.png?raw=true" width="300">
