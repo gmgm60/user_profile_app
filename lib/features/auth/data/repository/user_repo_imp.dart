@@ -66,9 +66,12 @@ class UserRepoImp implements UserRepo {
       final UserModel userModel = login.user.copyWith(token: login.token);
       await _localeDataStore.saveToken(login.token);
       return right(userModel.toDomain());
-    } catch (e) {
-      print("login error $e");
-      return left(Failures.noUser());
+    }
+    // on DioError catch (e) {
+    //   return left(Failures.serverError(e.response!.data.toString()));
+    // }
+     catch (e) {
+      return left(Failures.serverError("Email or Password Not Match"));
     }
   }
 
@@ -87,8 +90,14 @@ class UserRepoImp implements UserRepo {
       final UserModel userModel = register.user;
       await _localeDataStore.saveToken(register.token);
       return right(userModel.toDomain());
-    } catch (e) {
-      return left(Failures.serverError(e.toString()));
+    } on DioError catch (e) {
+      final Map<String,dynamic> errors = e.response?.data["errors"];
+      String errorList ="";
+      errors.values.forEach((element) {
+        errorList +=element[0].toString();
+      });
+      print("errorList:$errorList");
+      return left(Failures.serverError(errorList));
     }
   }
 
@@ -97,8 +106,8 @@ class UserRepoImp implements UserRepo {
     try {
       final token = await _localeDataStore.getToken();
       return right(token);
-    } catch (e) {
-      return left(Failures.localStorageError());
+    }on DioError catch (e) {
+      return left(Failures.localStorageError(e.response?.data ?? ""));
     }
   }
 
@@ -107,19 +116,21 @@ class UserRepoImp implements UserRepo {
     try {
       await _localeDataStore.saveToken(token);
       return right(unit);
-    } catch (e) {
-      return left(Failures.localStorageError());
+    }on DioError catch (e) {
+      return left(Failures.localStorageError(e.response?.data ?? ""));
     }
   }
 
   @override
   Future<Either<Failures, Unit>> logout()async {
     try {
-      //Todo : logout from api
+      final String token =await _localeDataStore.getToken() ?? "";
       await _localeDataStore.deleteToken();
+      await _remoteDataSource.logout(token : token );
       return right(unit);
     } catch (e) {
-      return left(Failures.localStorageError());
+      return right(unit);
+      //return left(Failures.localStorageError(e.response?.data ?? ""));
     }
   }
 

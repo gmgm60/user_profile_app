@@ -58,8 +58,7 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i13.GetProfile>(() => _i13.GetProfile(get<_i10.UserRepo>()));
   gh.factory<_i14.GetToken>(() => _i14.GetToken(get<_i10.UserRepo>()));
   gh.factory<_i15.Login>(() => _i15.Login(get<_i10.UserRepo>()));
-  gh.factory<_i16.LoginCubit>(
-      () => _i16.LoginCubit(get<_i15.Login>(), get<_i14.GetToken>()));
+  gh.factory<_i16.LoginCubit>(() => _i16.LoginCubit(get<_i15.Login>()));
   gh.factory<_i17.Logout>(() => _i17.Logout(get<_i10.UserRepo>()));
   gh.factory<_i18.Register>(() => _i18.Register(get<_i10.UserRepo>()));
   gh.factory<_i19.RegisterCubit>(

@@ -17,16 +17,7 @@ class RemoteDataSourceImp extends RemoteDataSource {
   Future<ProfileDataModel> editProfile(
       {required String token, required ProfileModel profileModel}) {
     print("profile map : ${profileModel.toJson()}");
-    return _restApiImp.editProfile(
-      token: token,
-      // name: profileModel.name,
-      // email: profileModel.email,
-      // address: profileModel.address,
-      // phone: profileModel.phone,
-      // age: profileModel.age,
-      // image: profileModel.image,
-        profileModel: profileModel
-    );
+    return _restApiImp.editProfile(token: token, profileModel: profileModel);
   }
 
   @override
@@ -47,6 +38,7 @@ class RemoteDataSourceImp extends RemoteDataSource {
       required String password,
       required String passwordConfirmation}) {
     return _restApiImp.register(
+        name: name,
         email: email,
         password: password,
         passwordConfirmation: passwordConfirmation);
@@ -55,5 +47,10 @@ class RemoteDataSourceImp extends RemoteDataSource {
   @override
   Future<UploadImageModel> uploadImage(File image) {
     return _restApiImp.uploadImage(image);
+  }
+
+  @override
+  Future<dynamic> logout({required String token}) async {
+    return await _restApiImp.logout(token: token);
   }
 }

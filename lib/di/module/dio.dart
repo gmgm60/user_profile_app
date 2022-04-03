@@ -5,6 +5,9 @@ import 'package:injectable/injectable.dart';
 abstract class MyDioInject {
   Dio get dio {
     Dio dio = Dio();
+    dio.options.headers = {
+      "Accept":"application/json"
+    };
     return dio;
   }
 }

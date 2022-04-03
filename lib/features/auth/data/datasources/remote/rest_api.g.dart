@@ -38,7 +38,7 @@ class _RestApiImp implements RestApiImp {
 
   @override
   Future<ResponseModel> register(
-      {name = "no name",
+      {required name,
       required email,
       required password,
       required passwordConfirmation}) async {
@@ -119,6 +119,21 @@ class _RestApiImp implements RestApiImp {
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = UploadImageModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<dynamic> logout({required token}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch(_setStreamType<dynamic>(
+        Options(method: 'POST', headers: _headers, extra: _extra)
+            .compose(_dio.options, 'logout',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data;
     return value;
   }
 

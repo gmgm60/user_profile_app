@@ -38,7 +38,8 @@ class CustomFormField extends StatefulWidget {
     this.radius = 10,
     this.maxLines,
     this.minLines,
-    this.initValue = "", this.onSaved,
+    this.initValue = "",
+    this.onSaved,
   }) : super(key: key) {
     isPass.isPassword = isPassword;
   }
@@ -47,7 +48,6 @@ class CustomFormField extends StatefulWidget {
   State<CustomFormField> createState() => _CustomFormFieldState();
 }
 
-
 class _CustomFormFieldState extends State<CustomFormField> {
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,9 @@ class _CustomFormFieldState extends State<CustomFormField> {
         padding: EdgeInsets.symmetric(
             horizontal: widget.horizontalPadding, vertical: 10.0),
         child: TextFormField(
+          style: const TextStyle(
+            // color: Colors.white,
+          ),
           onSaved: widget.onSaved,
           initialValue: widget.initValue,
           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -65,8 +68,6 @@ class _CustomFormFieldState extends State<CustomFormField> {
           onChanged: widget.onChanged,
           textInputAction: TextInputAction.done,
           decoration: InputDecoration(
-            contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             labelText: widget.textLabel,
             alignLabelWithHint: true,
             prefixIcon: widget.prefix != null
@@ -74,17 +75,14 @@ class _CustomFormFieldState extends State<CustomFormField> {
                 : null,
             suffixIcon: widget.showSuffix
                 ? IconButton(
-                onPressed: () {
-                  widget.isPass.isPassword = !widget.isPass.isPassword;
-                  setState(() {});
-                },
-                icon: Icon(widget.isPass.isPassword
-                    ? Icons.visibility
-                    : Icons.visibility_off))
+                    onPressed: () {
+                      widget.isPass.isPassword = !widget.isPass.isPassword;
+                      setState(() {});
+                    },
+                    icon: Icon(widget.isPass.isPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off))
                 : null,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
-            ),
           ),
           maxLines: widget.maxLines ?? 1,
           minLines: widget.minLines ?? 1,

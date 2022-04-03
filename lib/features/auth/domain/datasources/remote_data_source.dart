@@ -26,4 +26,6 @@ abstract class RemoteDataSource {
   });
 
   Future<UploadImageModel> uploadImage(File image);
+
+  Future<dynamic>logout({required String token});
 }

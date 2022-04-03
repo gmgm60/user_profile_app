@@ -7,14 +7,11 @@ import 'login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
-  final GetToken _getToken;
   final Login _login;
-  String email = "gmgm@g.g";
+  String email = "mohamed@gamal.com";
   String password = "123456";
 
-  // User user = User(id: -1, email: "", name: "", token: "");
-
-  LoginCubit(this._login, this._getToken) : super(LoginState.init());
+  LoginCubit(this._login) : super(LoginState.init());
 
   void editEmail(String email) {
     this.email = email;
@@ -33,7 +30,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     result.fold((failure) {
       print("faild");
-      emit(LoginState.error(failure.toString()));
+      emit(LoginState.error(failure.error.toString()));
     }, (user) {
       emit(LoginState.done());
     });

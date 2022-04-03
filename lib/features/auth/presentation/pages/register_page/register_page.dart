@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,6 +41,7 @@ class RegisterPage extends StatelessWidget {
         },
         child: Scaffold(
           appBar: AppBar(
+            leading: const SizedBox(),
             centerTitle: true,
             title: const Text("Register"),
           ),
@@ -48,16 +51,8 @@ class RegisterPage extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      "Register",
-                      style: TextStyle(fontSize: 20, color: Colors.blue),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomFormField(
                       textLabel: "Name",
                       initValue: registerCubit.name,
@@ -108,27 +103,24 @@ class RegisterPage extends StatelessWidget {
                           AutoRouter.of(context).navigate(const LoginRoute());
                         },
                         child: const Text("Or login with your account")),
+
                     BlocBuilder<RegisterCubit, RegisterState>(
                       builder: (context, state) {
                         print("State is $state");
                         return state.map(
                             init: (_) {
-                              return const Text("init");
+                              return const Text("");
                             },
                             loading: (_) => const CircularProgressIndicator(),
                             done: (userState) {
-                              AutoRouter.of(context)
-                                  .navigate(const ViewProfileRoute());
-                              return const Text("login");
+                              authCubit.isLogin();
+                              return const Text("");
                             },
-                            error: (_) {
-                              // Navigator.of(context).push(MaterialPageRoute(
-                              //     builder: (context) => const ProfilePage()));
-                              return const Text("error");
+                            error: (error) {
+                              return Text(error.error.toString());
                             });
                       },
                     ),
-
                   ],
                 ),
               ),

@@ -21,7 +21,7 @@ abstract class RestApiImp {
 
   @POST("register")
   Future<ResponseModel> register({
-    @Query("name") String name = "no name",
+    @Query("name") required String name,
     @Query("email") required String email,
     @Query("password") required String password,
     @Query("password_confirmation") required String passwordConfirmation,
@@ -35,12 +35,6 @@ abstract class RestApiImp {
   @POST("edit_user")
   Future<ProfileDataModel> editProfile({
     @Header("Authorization") required String token,
-    // @Query("name") required String name,
-    // @Query("email") required String email,
-    // @Query("address") required String address,
-    // @Query("phone") required String phone,
-    // @Query("age") required String age,
-    // @Query("image") required String image,
     @Body() required ProfileModel profileModel,
   });
 
@@ -50,4 +44,7 @@ abstract class RestApiImp {
    @Part() File image, {
    @Part() @Query("key") String token = "751a8fa64c568b7f68f4514c7a01a1e9",
   });
+
+  @POST("logout")
+  Future<dynamic> logout({required String token}) ;
 }

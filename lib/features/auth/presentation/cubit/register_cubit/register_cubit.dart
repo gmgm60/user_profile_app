@@ -38,7 +38,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         RegisterData(email: email, password: password, name: name);
     final result = await _register(registerData);
 
-    result.fold((failure) => emit(RegisterState.error(failure.toString())),
+    result.fold((failure) => emit(RegisterState.error(failure.error.toString())),
         (user) {
      // this.user = user;
       emit(RegisterState.done());

@@ -7,7 +7,7 @@ class ViewNetworkFileImage extends Image {
 
   static ImageProvider getProvider(String imgPath){
 
-    ImageProvider image = const AssetImage(Assets.assetsImg,);
+    ImageProvider image = const AssetImage(Assets.assetsUserImage,);
 
     if (imgPath == "") {
     } else if (Uri.parse(imgPath).host == "" ? false : true) {
