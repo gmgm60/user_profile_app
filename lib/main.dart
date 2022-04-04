@@ -26,12 +26,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt.get<AuthCubit>()..isLogin(),
         ),
-        BlocProvider(
-          create: (context) => getIt.get<LoginCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => getIt.get<RegisterCubit>(),
-        ),
+        // BlocProvider(
+        //   create: (context) => getIt.get<LoginCubit>(),
+        // ),
+        // BlocProvider(
+        //   create: (context) => getIt.get<RegisterCubit>(),
+        // ),
         BlocProvider(
           create: (context) => getIt.get<ViewProfileCubit>(),
         ),

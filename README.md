@@ -21,6 +21,10 @@ the packages used in this app :
 * shared_preferences
 
 # Screenshots
+## Start page
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/start_screen.png?raw=true" width="300">
+
+
 ## Register page
 <img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register.png?raw=true" width="300">
 
@@ -29,7 +33,7 @@ the packages used in this app :
 
 <img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register_email_taken.png?raw=true" width="300">
 
-<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register-loading.png?raw=true" width="300">
+<img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/register_loading.png?raw=true" width="300">
 
 ## Login page
 <img src="https://github.com/gmgm60/user_profile_app/blob/main/screenshots/login.png?raw=true" width="300">

@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_profile_app/di/injectable.dart';
 import 'package:user_profile_app/features/auth/domain/validates/validates.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
-import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_state.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_state.dart';
 import 'package:user_profile_app/features/auth/presentation/helper_functions/load_painter_image.dart';
@@ -12,7 +12,6 @@ import 'package:user_profile_app/features/auth/presentation/routes/router.gr.dar
 import 'package:user_profile_app/features/auth/presentation/widgets/custom_elevated_button.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/custom_form_field.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/divider_or.dart';
-import 'package:user_profile_app/features/auth/presentation/widgets/login_painter.dart';
 import 'dart:ui' as ui show Image;
 
 import 'package:user_profile_app/features/auth/presentation/widgets/register_painter.dart';
@@ -23,32 +22,12 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return Builder(builder: (context) {
-      final RegisterCubit registerCubit = context.read<RegisterCubit>();
-
-      final AuthCubit authCubit = context.read<AuthCubit>();
-
-      return BlocListener<AuthCubit, AuthState>(
-        listener: (context, state) {
-          state.map(
-              init: (_) => authCubit.isLogin(),
-              loading: (_) {},
-              login: (_) {
-                AutoRouter.of(context).replace(const ViewProfileRoute());
-              },
-              logout: (_) {},
-              error: (errorState) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("auth error"),
-                ));
-              });
-        },
-        child: Scaffold(
-          // appBar: AppBar(
-          //   leading: const SizedBox(),
-          //   centerTitle: true,
-          //   title: const Text("Register"),
-          // ),
+    return BlocProvider(
+      create: (context) => getIt.get<RegisterCubit>(),
+      child: Builder(builder: (context) {
+        final RegisterCubit registerCubit = context.read<RegisterCubit>();
+        final AuthCubit authCubit = context.read<AuthCubit>();
+        return Scaffold(
           body: ListView(
             children: [
               Form(
@@ -73,8 +52,7 @@ class RegisterPage extends StatelessWidget {
                                 } else {
                                   return FittedBox(
                                     child: SizedBox(
-                                      width:
-                                      MediaQuery.of(context).size.width,
+                                      width: MediaQuery.of(context).size.width,
                                       height: 300,
                                       child: CustomPaint(
                                         painter: RegisterPainter(
@@ -88,10 +66,13 @@ class RegisterPage extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Text("Create \nAccount",style: Theme.of(context)
-                              .textTheme
-                              .displayLarge
-                              ?.copyWith(color: Colors.white),),
+                          child: Text(
+                            "Create \nAccount",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayLarge
+                                ?.copyWith(color: Colors.white),
+                          ),
                         ),
                       ],
                     ),
@@ -144,14 +125,12 @@ class RegisterPage extends StatelessWidget {
                     const DividerOr(),
                     CustomElevatedButton(
                       onTap: () async {
-                        AutoRouter.of(context)
-                            .navigate(const LoginRoute());
+                        AutoRouter.of(context).navigate(const LoginRoute());
                       },
                       text: "Log in",
                       backGroundColor: Colors.white,
                       textColor: Colors.blue,
                     ),
-
                     BlocBuilder<RegisterCubit, RegisterState>(
                       builder: (context, state) {
                         print("State is $state");
@@ -162,6 +141,10 @@ class RegisterPage extends StatelessWidget {
                             loading: (_) => const CircularProgressIndicator(),
                             done: (userState) {
                               authCubit.isLogin();
+                              WidgetsBinding.instance
+                                  ?.addPostFrameCallback((timeStamp) {
+                                AutoRouter.of(context).popUntilRoot();
+                              });
                               return const Text("");
                             },
                             error: (error) {
@@ -174,8 +157,8 @@ class RegisterPage extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      );
-    });
+        );
+      }),
+    );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
+import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_state.dart';
 import 'package:user_profile_app/features/auth/presentation/routes/router.gr.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/custom_elevated_button.dart';
 import 'package:user_profile_app/generated/assets.dart';
@@ -18,7 +19,25 @@ class SplashScreen extends StatelessWidget {
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Color(0xff046bfb),
         systemNavigationBarContrastEnforced: false));
-    return Scaffold(
+
+    final AuthCubit authCubit = context.read<AuthCubit>();
+
+    return BlocListener<AuthCubit, AuthState>(
+        listener: (context, state) {
+      state.map(
+          init: (_) => authCubit.isLogin(),
+          loading: (_) {},
+          login: (_) {
+            AutoRouter.of(context).replace(const ViewProfileRoute());
+          },
+          logout: (_) {},
+          error: (errorState) {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("auth error"),
+            ));
+          });
+    },
+    child: Scaffold(
       backgroundColor: const Color(0xff046bfb),
       body: Stack(
         children: [
@@ -72,6 +91,7 @@ class SplashScreen extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }

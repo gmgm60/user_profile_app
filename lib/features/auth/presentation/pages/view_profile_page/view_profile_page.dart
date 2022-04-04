@@ -32,9 +32,8 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
         leading: IconButton(
             onPressed: () async {
               await context.read<AuthCubit>().logout();
-              AutoRouter.of(context).popUntilRoot();
               AutoRouter.of(context)
-                  .navigate(const LoginRoute());
+                  .replace(const SplashScreen());
             },
             icon: const Icon(
               Icons.logout,
@@ -171,7 +170,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                           await context.read<AuthCubit>().logout();
                           AutoRouter.of(context).popUntilRoot();
                           AutoRouter.of(context)
-                              .navigate(const LoginRoute());
+                              .navigate(const SplashScreen());
                         },
                         child: const Text("Go to Login Page")),
                   ],

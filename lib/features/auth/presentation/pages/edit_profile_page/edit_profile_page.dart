@@ -70,8 +70,9 @@ class EditProfilePage extends StatelessWidget {
             context.read<EditProfileCubit>();
         return Scaffold(
           appBar: AppBar(
+            leading: IconButton(onPressed: (){},icon: const Icon(Icons.arrow_back,size: 40,color: Colors.white70,)),
             elevation: 0,
-            title: const Text("Edit Profile"),
+            title: const Text("Edit Profile",style: TextStyle(color: Colors.white),),
             centerTitle: true,
           ),
           body: Padding(
