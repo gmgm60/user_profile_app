@@ -40,39 +40,48 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'User Profile App',
         theme: ThemeData(
-          elevatedButtonTheme:  ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              textStyle: const TextStyle(color: Colors.green,fontSize: 16,fontWeight: FontWeight.bold),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-            )
-          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                side: const BorderSide(color: Colors.blueGrey),
+            textStyle: const TextStyle(
+                color: Colors.green, fontSize: 16, fontWeight: FontWeight.bold),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+          )),
           inputDecorationTheme: InputDecorationTheme(
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),
-              borderSide: const BorderSide(
-                color: Colors.black,
+
+              borderSide: const BorderSide(width: 1,
+                color: Colors.blue,
+                style: BorderStyle.solid
               ),
             ),
-             // errorStyle: const TextStyle(color: Colors.red),
-            //  labelStyle: const TextStyle(color: Colors.red),
             contentPadding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
           ),
-          textTheme:  const TextTheme(
-            displayLarge: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),
-            bodyMedium: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),
+          textTheme: const TextTheme(
+            displayLarge: TextStyle(
+                color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
+            bodyMedium: TextStyle(
+                color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
           ),
           iconTheme: const IconThemeData(color: Colors.blue),
           appBarTheme: const AppBarTheme(
             elevation: 0,
-            color: Colors.black12,
+            color: Colors.blue,
             iconTheme: IconThemeData(color: Colors.red),
             actionsIconTheme: IconThemeData(color: Colors.indigo),
-            titleTextStyle: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),
-            systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black12)
+            titleTextStyle: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: Colors.black,
+              systemNavigationBarColor: Colors.blue,
+              systemNavigationBarDividerColor: Colors.blue
+            ),
           ),
           primarySwatch: Colors.blue,
         ),

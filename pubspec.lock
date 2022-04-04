@@ -210,7 +210,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.4"
+    version: "4.0.6"
   equatable:
     dependency: "direct main"
     description:
@@ -310,13 +310,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.2.0"
-  glassmorphism:
-    dependency: "direct main"
-    description:
-      name: glassmorphism
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   glob:
     dependency: transitive
     description:
@@ -365,7 +358,7 @@ packages:
       name: image_cropper
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.0"
+    version: "1.5.1"
   image_picker:
     dependency: "direct main"
     description:

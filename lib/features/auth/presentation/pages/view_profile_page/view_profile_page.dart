@@ -27,6 +27,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     // backgroundColor: Colors.blue[100],
       appBar: AppBar(
         leading: IconButton(
             onPressed: () async {

@@ -1,17 +1,21 @@
-import 'dart:convert';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:user_profile_app/di/injectable.dart';
 import 'package:user_profile_app/features/auth/domain/validates/validates.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_state.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/register_cubit/register_state.dart';
+import 'package:user_profile_app/features/auth/presentation/helper_functions/load_painter_image.dart';
 import 'package:user_profile_app/features/auth/presentation/routes/router.gr.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/custom_elevated_button.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/custom_form_field.dart';
+import 'package:user_profile_app/features/auth/presentation/widgets/divider_or.dart';
+import 'package:user_profile_app/features/auth/presentation/widgets/login_painter.dart';
+import 'dart:ui' as ui show Image;
+
+import 'package:user_profile_app/features/auth/presentation/widgets/register_painter.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -40,19 +44,58 @@ class RegisterPage extends StatelessWidget {
               });
         },
         child: Scaffold(
-          appBar: AppBar(
-            leading: const SizedBox(),
-            centerTitle: true,
-            title: const Text("Register"),
-          ),
+          // appBar: AppBar(
+          //   leading: const SizedBox(),
+          //   centerTitle: true,
+          //   title: const Text("Register"),
+          // ),
           body: ListView(
             children: [
               Form(
                 key: formKey,
                 child: Column(
                   children: [
-                    const SizedBox(height: 20),
-                    const SizedBox(height: 20),
+                    Stack(
+                      alignment: Alignment.centerLeft,
+                      children: [
+                        FutureBuilder<ui.Image>(
+                          future: loadPainterImage(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<ui.Image> snapshot) {
+                            SystemChrome.setEnabledSystemUIMode(
+                                SystemUiMode.immersive);
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return const Text('Loading....');
+                              default:
+                                if (snapshot.hasError) {
+                                  return Text('Error: ${snapshot.error}');
+                                } else {
+                                  return FittedBox(
+                                    child: SizedBox(
+                                      width:
+                                      MediaQuery.of(context).size.width,
+                                      height: 300,
+                                      child: CustomPaint(
+                                        painter: RegisterPainter(
+                                            background: snapshot.data!),
+                                      ),
+                                    ),
+                                  );
+                                }
+                            }
+                          },
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Text("Create \nAccount",style: Theme.of(context)
+                              .textTheme
+                              .displayLarge
+                              ?.copyWith(color: Colors.white),),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 40),
                     CustomFormField(
                       textLabel: "Name",
                       initValue: registerCubit.name,
@@ -94,15 +137,20 @@ class RegisterPage extends StatelessWidget {
                           await registerCubit.register();
                         }
                       },
-                      text: "Register",
+                      text: "Sing up",
                       backGroundColor: Colors.blue,
-                      textColor: Colors.black,
+                      textColor: Colors.white,
                     ),
-                    TextButton(
-                        onPressed: () {
-                          AutoRouter.of(context).navigate(const LoginRoute());
-                        },
-                        child: const Text("Or login with your account")),
+                    const DividerOr(),
+                    CustomElevatedButton(
+                      onTap: () async {
+                        AutoRouter.of(context)
+                            .navigate(const LoginRoute());
+                      },
+                      text: "Log in",
+                      backGroundColor: Colors.white,
+                      textColor: Colors.blue,
+                    ),
 
                     BlocBuilder<RegisterCubit, RegisterState>(
                       builder: (context, state) {
