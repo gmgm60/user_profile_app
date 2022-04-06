@@ -28,7 +28,27 @@ class RegisterPainter extends CustomPainter {
       ..lineTo(width, 0)
       ..lineTo(0, 0);
 
-    canvas.drawPath(path, paint);
+   // canvas.drawPath(path, paint);
+
+
+    Paint paint0 = Paint()
+      ..color = const Color.fromARGB(255, 33, 150, 243)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1;
+
+
+    Path path0 = Path();
+    path0.moveTo(0,0);
+    path0.lineTo(0,size.height*0.8353333);
+    path0.quadraticBezierTo(size.width*0.1828877,size.height*0.8189667,size.width*0.3645357,size.height*0.9139667);
+    path0.cubicTo(size.width*0.4645600,size.height*0.9762667,size.width*0.6236266,size.height*0.8922000,size.width*0.7298250,size.height*0.9017333);
+    path0.quadraticBezierTo(size.width*0.8636121,size.height*0.9131000,size.width,size.height);
+    path0.lineTo(size.width,0);
+    path0.lineTo(0,0);
+    path0.close();
+
+    canvas.drawPath(path0, paint);
+
   }
 
   @override

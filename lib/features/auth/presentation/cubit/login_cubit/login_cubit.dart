@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:user_profile_app/core/usecases/usecase.dart';
-import 'package:user_profile_app/features/auth/domain/usecases/get_token.dart';
 import 'package:user_profile_app/features/auth/domain/usecases/login.dart';
 import 'login_state.dart';
 

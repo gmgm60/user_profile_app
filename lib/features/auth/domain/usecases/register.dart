@@ -3,6 +3,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:user_profile_app/features/auth/data/models/register_data/register_data.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
@@ -17,7 +18,7 @@ class Register implements UseCase<User, RegisterData> {
 
   @override
   Future<Either<Failures, User>> call(RegisterData params) async {
-    return _userRepo.register(name: params.name,email: params.email, password: params.password);
+    return _userRepo.register(registerData: params);
   }
 }
 
@@ -30,4 +31,8 @@ class RegisterData extends Equatable {
 
   @override
   List<Object?> get props => [email, password];
+
+ RegisterModelData toModel(){
+    return RegisterModelData(name: name, email: email, password: password,passwordConfirmation: password);
+  }
 }

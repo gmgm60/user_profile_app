@@ -1,20 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_profile_app/di/injectable.dart';
-import 'package:user_profile_app/features/auth/domain/validates/validates.dart';
+import 'package:user_profile_app/core/domain/validates/validates.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
-import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_state.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/login_cubit/login_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/login_cubit/login_state.dart';
-import 'package:user_profile_app/features/auth/presentation/helper_functions/load_painter_image.dart';
-import 'package:user_profile_app/features/auth/presentation/routes/router.gr.dart';
-import 'package:user_profile_app/features/auth/presentation/widgets/custom_elevated_button.dart';
-import 'package:user_profile_app/features/auth/presentation/widgets/custom_form_field.dart';
-import 'package:user_profile_app/features/auth/presentation/widgets/divider_or.dart';
-import 'dart:ui' as ui show Image;
-
+import 'package:user_profile_app/core/presentation/routes/router.gr.dart';
+import 'package:user_profile_app/core/presentation/widgets/custom_elevated_button.dart';
+import 'package:user_profile_app/core/presentation/widgets/custom_form_field.dart';
+import 'package:user_profile_app/core/presentation/widgets/divider_or.dart';
+import 'package:user_profile_app/features/auth/presentation/widgets/inherited_image.dart';
 import 'package:user_profile_app/features/auth/presentation/widgets/login_painter.dart';
 
 class LoginPage extends StatelessWidget {
@@ -31,6 +27,7 @@ class LoginPage extends StatelessWidget {
       child: BlocProvider(
         create: (context) => getIt.get<LoginCubit>(),
         child: Scaffold(
+          // backgroundColor: Colors.grey,
           body: Padding(
             padding: const EdgeInsets.all(0.0),
             child: ListView(
@@ -43,50 +40,33 @@ class LoginPage extends StatelessWidget {
                       child: Column(
                         children: [
                           Stack(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.topLeft,
                             children: [
-                              FutureBuilder<ui.Image>(
-                                future: loadPainterImage(),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<ui.Image> snapshot) {
-                                  SystemChrome.setEnabledSystemUIMode(
-                                      SystemUiMode.immersive);
-                                  switch (snapshot.connectionState) {
-                                    case ConnectionState.waiting:
-                                      return const Text('Loading....');
-                                    default:
-                                      if (snapshot.hasError) {
-                                        return Text('Error: ${snapshot.error}');
-                                      } else {
-                                        return FittedBox(
-                                          child: SizedBox(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: 300,
-                                            child: CustomPaint(
-                                              painter: LoginPainter(
-                                                  background: snapshot.data!),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                  }
-                                },
+                              FittedBox(
+                                child: SizedBox(
+                                  width: MediaQuery.of(context)
+                                      .size
+                                      .width,
+                                  height: 400,
+                                  child: CustomPaint(
+                                    painter: LoginPainter(
+                                        background: InheritedImage.of(context).myImages.authBackground!),
+                                  ),
+                                ),
                               ),
+                              const AutoBackButton(color: Colors.white,),
                               Padding(
-                                padding: const EdgeInsets.all(20.0),
+                                padding: const EdgeInsets.only(left: 20.0,top: 100),
                                 child: Text(
                                   "Welcome \nBack",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .displayLarge
-                                      ?.copyWith(color: Colors.white),
+                                      .headline4,
                                 ),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 40),
+                       //   const SizedBox(height: 40),
                           CustomFormField(
                             textLabel: "Email",
                             prefix: Icons.email,

@@ -8,8 +8,6 @@ class LoginPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final width = size.width;
-    final height = size.height;
 
     final paint = Paint()
       ..color = Colors.blue
@@ -17,15 +15,16 @@ class LoginPainter extends CustomPainter {
       ..shader = ImageShader(background, TileMode.clamp, TileMode.clamp,
           Matrix4.identity().storage);
 
-    Path path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(0, height)
-      ..quadraticBezierTo(width / 4, height - height / 6, width / 2, height)
-      ..quadraticBezierTo(width / 1.25, height + height / 6, width, height)
-      ..lineTo(width, 0)
-      ..lineTo(0, 0);
+    Path path0 = Path();
+    path0.moveTo(0,0);
+    path0.lineTo(0,size.height*0.8347667);
+    path0.quadraticBezierTo(size.width*0.2418571,size.height*0.6706667,size.width*0.4859504,size.height*0.8333333);
+    path0.quadraticBezierTo(size.width*0.7293632,size.height*0.9968333,size.width,size.height*0.8335667);
+    path0.lineTo(size.width,0);
+    path0.lineTo(0,0);
+    path0.close();
 
-    canvas.drawPath(path, paint);
+    canvas.drawPath(path0, paint);
   }
 
   @override

@@ -4,8 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_state.dart';
-import 'package:user_profile_app/features/auth/presentation/routes/router.gr.dart';
-import 'package:user_profile_app/features/auth/presentation/widgets/custom_elevated_button.dart';
+import 'package:user_profile_app/features/auth/presentation/helper_functions/load_painter_image.dart';
+import 'package:user_profile_app/core/presentation/routes/router.gr.dart';
+import 'package:user_profile_app/core/presentation/widgets/custom_elevated_button.dart';
+import 'package:user_profile_app/features/auth/presentation/widgets/inherited_image.dart';
 import 'package:user_profile_app/generated/assets.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -20,17 +22,24 @@ class SplashScreen extends StatelessWidget {
         systemNavigationBarColor: Color(0xff046bfb),
         systemNavigationBarContrastEnforced: false));
 
-    final AuthCubit authCubit = context.read<AuthCubit>();
+    final AuthCubit authCubit = context.read<AuthCubit>()..isLogin();
 
     return BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
+         // print("auth state on splash screen is :$state");
       state.map(
-          init: (_) => authCubit.isLogin(),
+          init: (_) async{
+           // InheritedImage.of(context).image=await loadPainterImage();
+           // authCubit.isLogin();
+          } ,
           loading: (_) {},
-          login: (_) {
+          login: (_) async{
             AutoRouter.of(context).replace(const ViewProfileRoute());
+            InheritedImage.of(context).myImages.authBackground=null;
           },
-          logout: (_) {},
+          logout: (_) async{
+            InheritedImage.of(context).myImages.authBackground=await loadPainterImage();
+          },
           error: (errorState) {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text("auth error"),
@@ -58,24 +67,21 @@ class SplashScreen extends StatelessWidget {
                   Text("Profile",
                       style: Theme.of(context)
                           .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: Colors.white)),
+                          .headline4),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Profile App",
                           style: Theme.of(context)
                               .textTheme
-                              .displayLarge
-                              ?.copyWith(color: Colors.white)),
+                              .headline4),
                       const SizedBox(
                         height: 20
                       ),
                       Text("Simple App to view and edit Profile",
                           style: Theme.of(context)
                               .textTheme
-                              .bodyMedium
-                              ?.copyWith(color: Colors.teal[200])),
+                              .subtitle1?.copyWith(color: Colors.teal[200])),
                       const SizedBox(height: 20,),
                       CustomElevatedButton(onTap: (){
                         AutoRouter.of(context).navigate(const LoginRoute());

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:user_profile_app/core/usecases/usecase.dart';
@@ -11,11 +10,11 @@ import 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final GetToken _getToken;
   final Logout _logout;
-  StreamController? _streamController;
 
   AuthCubit(this._getToken, this._logout) : super(AuthState.init());
 
   Future<void> isLogin() async {
+    emit(AuthState.loading());
     final result = await _getToken(NoParams());
     result.fold((error) {
       emit(AuthState.error(error.toString()));
@@ -35,13 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await _logout(NoParams());
     result.fold(
       (error) => emit(AuthState.error(error.toString())),
-      (unit) =>  emit(AuthState.logout()),
+      (unit) => emit(AuthState.logout()),
     );
-
-  }
-  @override
-  Future<void> close() {
-    _streamController?.close();
-    return super.close();
   }
 }
