@@ -25,7 +25,6 @@ extension ProfileMapper on Profile {
         phone: phone,
         address: address,
         age: age,
-        id: 0,
         emailVerifiedAt: '');
   }
 

@@ -26,7 +26,7 @@ class CustomText extends StatelessWidget {
               Icon(icon,size: 30,),
               const SizedBox(width: 10,),
               SizedBox(
-                  width: 70,
+                  width: 100,
                   child: Text(title, style: Theme.of(context).textTheme.bodyText1)),
              // const SizedBox(width: 5,),
               Text(value, style:  Theme.of(context).textTheme.bodyText1),

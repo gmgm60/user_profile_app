@@ -1,0 +1,59 @@
+{
+  "language": "English",
+  "@language": {
+    "description": "The current language"
+  },
+  "appName": "Profile",
+  "@appName": {
+    "description": "App name"
+  },
+  "firstScreenTitle": "Profile App",
+  "@firstScreenTitle": {
+    "description": "firstScreenTitle"
+  },
+  "firstScreenText":"Simple App to view and edit profile",
+  "@firstScreenText": {
+    "description": "Simple App to view and edit profile"
+  },
+  "logIn":"Log In",
+  "@logIn": {
+    "description": "Log In"
+  },
+  "signUp":"Sign Up",
+  "@signUp": {
+    "description": "Sign Up"
+  },
+  "logInText":"Welcome Back",
+  "@logInText": {
+    "description": "Welcome Back"
+  },
+  "email":"Email",
+  "@email": {
+    "description": "Email"
+  },
+  "password":"Password",
+  "@password": {
+    "description": "Password"
+  },
+  "or":"Or",
+  "@or": {
+    "description": "Or"
+  },
+  "signUpText" : "Create Account",
+  "name" : "Name",
+
+  "viewProfileTitle" : "View Profile",
+  "address" : "Address",
+  "phone" : "Phone",
+  "age" : "Age",
+  "cropImage" : "Crop your image",
+  "updateProfile" : "Update Profile",
+  "editProfile" : "Edit Profile",
+  "passwordValidate" : "password must be more than 6",
+  "invalidEmailAddress" : "Invalid Email Address!",
+  "nameValidate" : "Name must be more than 6",
+  "addressValidate" : "Address must be more than 6",
+  "phoneValidate" : "Phone must be more than 11",
+  "ageValidateLimits" : "age must be number between 10 and 100",
+  "ageValidate" : "Not valid Age "
+}

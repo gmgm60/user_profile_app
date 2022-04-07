@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_profile_app/app_localizations.dart';
 
 class DividerOr extends StatelessWidget {
   const DividerOr({Key? key}) : super(key: key);
@@ -14,9 +15,9 @@ class DividerOr extends StatelessWidget {
                 height: 1,
                 color: Colors.black12,
               )),
-          const Text(
-            "  Or  ",
-            style: TextStyle(color: Colors.black54),
+           Text(
+            "  ${context.translate.or}  ",
+            style: const TextStyle(color: Colors.black54),
           ),
           Expanded(
               child: Container(

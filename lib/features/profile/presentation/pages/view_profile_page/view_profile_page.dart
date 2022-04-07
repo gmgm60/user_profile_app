@@ -2,7 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:user_profile_app/app_localizations.dart';
 import 'package:user_profile_app/core/presentation/routes/router.gr.dart';
+import 'package:user_profile_app/features/localization/presentation/localization_cubit.dart';
 import 'package:user_profile_app/features/profile/domain/entity/profile/profile.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_state.dart';
@@ -48,6 +51,10 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
           },
         ),
         actions: [
+          IconButton(onPressed: (){
+           Locale locale = context.read<LocalizationCubit>().locale.languageCode == "ar" ?  const Locale("en") :  const Locale("ar");
+            context.read<LocalizationCubit>().changeLocale(locale);
+          }, icon: const Icon(Icons.flag)),
           BlocBuilder<ViewProfileCubit, ViewProfileState>(
             builder: (context, state) {
               return state.maybeWhen(
@@ -67,7 +74,7 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
           )
         ],
         centerTitle: true,
-        title: Text("View Profile",style: Theme.of(context).textTheme.headline6,),
+        title: Text(context.translate.viewProfileTitle,style: Theme.of(context).textTheme.headline6,),
       ),
       body: Center(
         child: BlocBuilder<ViewProfileCubit, ViewProfileState>(
@@ -134,28 +141,28 @@ class _ViewProfilePageState extends State<ViewProfilePage> {
                               children: [
                                 CustomText(
                                     icon: Icons.email,
-                                    title: "Email",
+                                    title: context.translate.email,
                                     value: profile.email,
                                     textStyle: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!),
                                 CustomText(
                                     icon: Icons.location_on_outlined,
-                                    title: "Address",
+                                    title: context.translate.address,
                                     value: profile.address,
                                     textStyle: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!),
                                 CustomText(
                                     icon: Icons.phone,
-                                    title: "Phone",
+                                    title: context.translate.phone,
                                     value: profile.phone,
                                     textStyle: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!),
                                 CustomText(
                                     icon: Icons.calendar_today,
-                                    title: "Age",
+                                    title: context.translate.age,
                                     value: profile.age,
                                     textStyle: Theme.of(context)
                                         .textTheme

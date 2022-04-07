@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_profile_app/app_localizations.dart';
 import 'package:user_profile_app/di/injectable.dart';
 import 'package:user_profile_app/core/domain/validates/validates.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
@@ -32,7 +33,7 @@ class RegisterPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Stack(
-                      alignment: Alignment.topLeft,
+                      alignment: AlignmentDirectional.topStart,
                       children: [
                         FittedBox(
                           child: SizedBox(
@@ -46,9 +47,9 @@ class RegisterPage extends StatelessWidget {
                         ),
                         const AutoBackButton(color: Colors.white,),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0,top: 100),
+                          padding: const EdgeInsets.only(left: 20.0,right: 20.0,top: 100),
                           child: Text(
-                            "Create \nAccount",
+                            context.translate.signUpText,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline4,
@@ -58,7 +59,7 @@ class RegisterPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
                     CustomFormField(
-                      textLabel: "Name",
+                      textLabel: context.translate.name,
                       initValue: registerCubit.name,
                       textType: TextInputType.name,
                       onChanged: (String? name) {
@@ -66,10 +67,10 @@ class RegisterPage extends StatelessWidget {
                           registerCubit.editName(name);
                         }
                       },
-                      validation: validateName,
+                      validation: (str) => validateName(str,context),
                     ),
                     CustomFormField(
-                      textLabel: "Email",
+                      textLabel: context.translate.email,
                       initValue: registerCubit.email,
                       textType: TextInputType.emailAddress,
                       onChanged: (String? email) {
@@ -77,15 +78,15 @@ class RegisterPage extends StatelessWidget {
                           registerCubit.editEmail(email);
                         }
                       },
-                      validation: validateEmailAddress,
+                      validation: (str) => validateEmailAddress(str,context),
                     ),
                     CustomFormField(
                       showSuffix: true,
                       isPassword: true,
                       initValue: registerCubit.password,
-                      textLabel: "Password",
+                      textLabel: context.translate.password,
                       textType: TextInputType.text,
-                      validation: validatePassword,
+                      validation: (str) => validatePassword(str,context),
                       onChanged: (String? password) {
                         if (password != null) {
                           registerCubit.editPassword(password);
@@ -98,7 +99,7 @@ class RegisterPage extends StatelessWidget {
                           await registerCubit.register();
                         }
                       },
-                      text: "Sing up",
+                      text: context.translate.signUp,
                       backGroundColor: Colors.blue,
                       textColor: Colors.white,
                     ),
@@ -107,7 +108,7 @@ class RegisterPage extends StatelessWidget {
                       onTap: () async {
                         AutoRouter.of(context).navigate(const LoginRoute());
                       },
-                      text: "Log in",
+                      text: context.translate.logIn,
                       backGroundColor: Colors.white,
                       textColor: Colors.blue,
                     ),

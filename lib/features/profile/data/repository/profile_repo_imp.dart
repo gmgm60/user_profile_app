@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:user_profile_app/core/error/failures.dart';
 import 'package:user_profile_app/features/profile/data/models/profile/profile_model.dart';
@@ -28,7 +29,7 @@ class UserRepoImp implements ProfileRepo {
       //  final url = await uploadImage(File(profileModel.image!));
       }
        profileModel = profileModel.copyWith(image: null);
-
+debugPrint("profile model no image : ${profileModel.toJson()}");
       final String token =await _localeDataStore.getToken() ?? "";
        final ProfileDataModel profileDataModel = await _remoteDataSource.editProfile(
           token: token, profileModel: profileModel);

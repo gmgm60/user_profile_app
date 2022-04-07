@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:user_profile_app/app_localizations.dart';
 import 'package:user_profile_app/core/presentation/routes/router.gr.dart';
 import 'package:user_profile_app/di/injectable.dart';
 import 'package:user_profile_app/features/profile/domain/entity/profile/profile.dart';
@@ -74,7 +75,7 @@ class EditProfilePage extends StatelessWidget {
             // leading: IconButton(onPressed: (){
             //   AutoRouter.of(context).pop();
             // },icon: const Icon(Icons.arrow_back,)),
-            title:  Text("Edit Profile",style: Theme.of(context).textTheme.headline5,),
+            title:  Text(context.translate.editProfile,style: Theme.of(context).textTheme.headline5,),
             centerTitle: true,
           ),
           body: Padding(
@@ -146,39 +147,39 @@ class EditProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       CustomFormField(
-                        textLabel: "Name",
+                        textLabel: context.translate.name,
                         initValue: editProfileCubit.profile.name,
                         onChanged: editProfileCubit.editName,
                         textType: TextInputType.name,
-                        validation: validateName,
+                        validation: (str) => validateName(str,context),
                       ),
                       CustomFormField(
-                        textLabel: "Email",
+                        textLabel: context.translate.email,
                         initValue: editProfileCubit.profile.email,
                         onChanged: editProfileCubit.editEmail,
                         textType: TextInputType.emailAddress,
-                        validation: validateEmailAddress,
+                        validation: (str) => validateEmailAddress(str,context),
                       ),
                       CustomFormField(
-                        textLabel: "Address",
+                        textLabel: context.translate.address,
                         initValue: editProfileCubit.profile.address,
                         onChanged: editProfileCubit.editAddress,
                         textType: TextInputType.streetAddress,
-                        validation: validateAddress,
+                        validation: (str) => validateAddress(str,context),
                       ),
                       CustomFormField(
-                        textLabel: "Phone",
+                        textLabel: context.translate.phone,
                         initValue: editProfileCubit.profile.phone,
                         onChanged: editProfileCubit.editPhone,
                         textType: TextInputType.phone,
-                        validation: validatePhone,
+                        validation: (str) => validatePhone(str,context),
                       ),
                       CustomFormField(
-                        textLabel: "Age",
+                        textLabel: context.translate.age,
                         initValue: editProfileCubit.profile.age,
                         onChanged: editProfileCubit.editAge,
                         textType: TextInputType.number,
-                        validation: validateAge,
+                        validation: (str) => validateAge(str,context),
                       ),
                       CustomElevatedButton(
                         onTap: () async {
@@ -186,7 +187,7 @@ class EditProfilePage extends StatelessWidget {
                             await editProfileCubit.updateProfile();
                           }
                         },
-                        text: "Update Profile",
+                        text: context.translate.updateProfile,
                       )
                     ],
                   ),

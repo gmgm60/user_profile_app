@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_profile_app/app_localizations.dart';
 import 'package:user_profile_app/di/injectable.dart';
 import 'package:user_profile_app/core/domain/validates/validates.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
@@ -40,7 +41,7 @@ class LoginPage extends StatelessWidget {
                       child: Column(
                         children: [
                           Stack(
-                            alignment: Alignment.topLeft,
+                            alignment:  AlignmentDirectional.topStart,
                             children: [
                               FittedBox(
                                 child: SizedBox(
@@ -56,9 +57,9 @@ class LoginPage extends StatelessWidget {
                               ),
                               const AutoBackButton(color: Colors.white,),
                               Padding(
-                                padding: const EdgeInsets.only(left: 20.0,top: 100),
+                                padding: const EdgeInsets.only(left: 20.0,right:20,top: 100),
                                 child: Text(
-                                  "Welcome \nBack",
+                                  context.translate.logInText,
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline4,
@@ -68,7 +69,7 @@ class LoginPage extends StatelessWidget {
                           ),
                        //   const SizedBox(height: 40),
                           CustomFormField(
-                            textLabel: "Email",
+                            textLabel: context.translate.email,
                             prefix: Icons.email,
                             initValue: loginCubit.email,
                             textType: TextInputType.emailAddress,
@@ -77,16 +78,16 @@ class LoginPage extends StatelessWidget {
                                 loginCubit.editEmail(email);
                               }
                             },
-                            validation: validateEmailAddress,
+                            validation: (str) => validateEmailAddress(str,context),
                           ),
                           CustomFormField(
-                            textLabel: "Password",
+                            textLabel: context.translate.password,
                             showSuffix: true,
                             isPassword: true,
                             prefix: Icons.lock_outline,
                             initValue: loginCubit.password,
                             textType: TextInputType.text,
-                            validation: validatePassword,
+                            validation:(str) => validatePassword(str,context),
                             onChanged: (String? password) {
                               if (password != null) {
                                 loginCubit.editPassword(password);
@@ -99,7 +100,7 @@ class LoginPage extends StatelessWidget {
                                 await loginCubit.login();
                               }
                             },
-                            text: "Login",
+                            text: context.translate.logIn,
                             backGroundColor: Colors.blue,
                             //  textColor: Colors.black,
                           ),
@@ -109,7 +110,7 @@ class LoginPage extends StatelessWidget {
                               AutoRouter.of(context)
                                   .navigate(const RegisterRoute());
                             },
-                            text: "Sign up",
+                            text: context.translate.signUp,
                             backGroundColor: Colors.white,
                             textColor: Colors.blue,
                           ),

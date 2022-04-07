@@ -23,13 +23,13 @@ class _$ProfileModelTearOff {
   const _$ProfileModelTearOff();
 
   _profileModel call(
-      {int? id,
+      {@JsonKey(includeIfNull: false) int? id,
       required String name,
       required String email,
       @JsonKey(name: "email_verified_at") String emailVerifiedAt = "",
       String address = "",
       String phone = "",
-      String? image = "",
+      @JsonKey(includeIfNull: false) String? image,
       String age = ""}) {
     return _profileModel(
       id: id,
@@ -53,6 +53,7 @@ const $ProfileModel = _$ProfileModelTearOff();
 
 /// @nodoc
 mixin _$ProfileModel {
+  @JsonKey(includeIfNull: false)
   int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -60,6 +61,7 @@ mixin _$ProfileModel {
   String get emailVerifiedAt => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get image => throw _privateConstructorUsedError;
   String get age => throw _privateConstructorUsedError;
 
@@ -75,13 +77,13 @@ abstract class $ProfileModelCopyWith<$Res> {
           ProfileModel value, $Res Function(ProfileModel) then) =
       _$ProfileModelCopyWithImpl<$Res>;
   $Res call(
-      {int? id,
+      {@JsonKey(includeIfNull: false) int? id,
       String name,
       String email,
       @JsonKey(name: "email_verified_at") String emailVerifiedAt,
       String address,
       String phone,
-      String? image,
+      @JsonKey(includeIfNull: false) String? image,
       String age});
 }
 
@@ -149,13 +151,13 @@ abstract class _$profileModelCopyWith<$Res>
       __$profileModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int? id,
+      {@JsonKey(includeIfNull: false) int? id,
       String name,
       String email,
       @JsonKey(name: "email_verified_at") String emailVerifiedAt,
       String address,
       String phone,
-      String? image,
+      @JsonKey(includeIfNull: false) String? image,
       String age});
 }
 
@@ -219,22 +221,22 @@ class __$profileModelCopyWithImpl<$Res> extends _$ProfileModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_profileModel extends _profileModel {
+class _$_profileModel implements _profileModel {
   _$_profileModel(
-      {this.id,
+      {@JsonKey(includeIfNull: false) this.id,
       required this.name,
       required this.email,
       @JsonKey(name: "email_verified_at") this.emailVerifiedAt = "",
       this.address = "",
       this.phone = "",
-      this.image = "",
-      this.age = ""})
-      : super._();
+      @JsonKey(includeIfNull: false) this.image,
+      this.age = ""});
 
   factory _$_profileModel.fromJson(Map<String, dynamic> json) =>
       _$$_profileModelFromJson(json);
 
   @override
+  @JsonKey(includeIfNull: false)
   final int? id;
   @override
   final String name;
@@ -249,8 +251,8 @@ class _$_profileModel extends _profileModel {
   @JsonKey()
   @override
   final String phone;
-  @JsonKey()
   @override
+  @JsonKey(includeIfNull: false)
   final String? image;
   @JsonKey()
   @override
@@ -300,22 +302,22 @@ class _$_profileModel extends _profileModel {
   }
 }
 
-abstract class _profileModel extends ProfileModel {
+abstract class _profileModel implements ProfileModel {
   factory _profileModel(
-      {int? id,
+      {@JsonKey(includeIfNull: false) int? id,
       required String name,
       required String email,
       @JsonKey(name: "email_verified_at") String emailVerifiedAt,
       String address,
       String phone,
-      String? image,
+      @JsonKey(includeIfNull: false) String? image,
       String age}) = _$_profileModel;
-  _profileModel._() : super._();
 
   factory _profileModel.fromJson(Map<String, dynamic> json) =
       _$_profileModel.fromJson;
 
   @override
+  @JsonKey(includeIfNull: false)
   int? get id;
   @override
   String get name;
@@ -329,6 +331,7 @@ abstract class _profileModel extends ProfileModel {
   @override
   String get phone;
   @override
+  @JsonKey(includeIfNull: false)
   String? get image;
   @override
   String get age;

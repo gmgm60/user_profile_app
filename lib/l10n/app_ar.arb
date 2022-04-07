@@ -1,0 +1,30 @@
+{
+  "language" : "اللغه العربيه",
+  "appName" : "الملف الشخضى",
+  "firstScreenTitle" : "برنامج الملف الشخصى",
+  "firstScreenText" : "برنامج بسيط لعرض و تعديل الملف الشخصى",
+  "logIn" : "تسجيل دخول",
+  "signUp" : "تسجيل عضويه",
+  "logInText":"مرحبا مجددا",
+  "email":"البريد الالكترونى",
+  "password":"كلمة السر",
+  "or":"او",
+  "signUpText" : "أنشاء حساب جديد",
+  "name" : "الاسم",
+
+  "viewProfileTitle" : "عرض الملف الشخضى",
+  "address" : "العنوان",
+  "phone" : "رقم الهاتف",
+  "age" : "العمر",
+  "cropImage" : "قص الصوره",
+  "updateProfile" : "تحديث البيانات",
+  "editProfile" : "تعديل الملف الشخصى",
+  "passwordValidate" : "كلمة السر يجب ان تكون اكبر من ٦ احرف",
+  "invalidEmailAddress" : "البريد الالكترونى ليس صحيح",
+  "nameValidate" : "الاسم يجب ان يكون اكثر من ٦ احرف",
+  "addressValidate" : "العنوان يجب ان يكون اكثر من ٦ احرف",
+  "phoneValidate" : "رقم الهاتف ليس صحيح",
+  "ageValidateLimits" : "العمر يجب ان يكون اكبر من ١٠ سنوات و اقل من ١٠٠ سنه",
+  "ageValidate" : "برجاء ادخال عمر صحيح"
+
+}

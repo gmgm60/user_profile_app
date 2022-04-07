@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_profile_app/app_localizations.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_cubit.dart';
 import 'package:user_profile_app/features/auth/presentation/cubit/auth_cubit/auth_state.dart';
 import 'package:user_profile_app/features/auth/presentation/helper_functions/load_painter_image.dart';
@@ -22,7 +23,7 @@ class SplashScreen extends StatelessWidget {
         systemNavigationBarColor: Color(0xff046bfb),
         systemNavigationBarContrastEnforced: false));
 
-    final AuthCubit authCubit = context.read<AuthCubit>()..isLogin();
+    context.read<AuthCubit>().isLogin();
 
     return BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
@@ -64,31 +65,31 @@ class SplashScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Profile",
+                  Text(context.translate.appName,
                       style: Theme.of(context)
                           .textTheme
                           .headline4),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Profile App",
+                      Text(context.translate.firstScreenTitle,
                           style: Theme.of(context)
                               .textTheme
                               .headline4),
                       const SizedBox(
                         height: 20
                       ),
-                      Text("Simple App to view and edit Profile",
+                      Text(context.translate.firstScreenText,
                           style: Theme.of(context)
                               .textTheme
                               .subtitle1?.copyWith(color: Colors.teal[200])),
                       const SizedBox(height: 20,),
                       CustomElevatedButton(onTap: (){
                         AutoRouter.of(context).navigate(const LoginRoute());
-                      }, text: "Log in",backGroundColor: Colors.white,textColor: Colors.blue,),
+                      }, text: context.translate.logIn,backGroundColor: Colors.white,textColor: Colors.blue,),
                       CustomElevatedButton(onTap: (){
                         AutoRouter.of(context).navigate(const RegisterRoute());
-                      }, text: "Sign up",backGroundColor:  const Color(0xff046bfb),textColor: Colors.white,borderColor: Colors.white),
+                      }, text: context.translate.signUp,backGroundColor:  const Color(0xff046bfb),textColor: Colors.white,borderColor: Colors.white),
                     ],
                   )
                 ],
